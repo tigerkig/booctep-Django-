@@ -1,0 +1,284 @@
+{% extends "teacher/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+
+{% block headercontent %}
+{% get_current_language as lang %}
+{% if lang == "ar" %}
+    {% with title="طرق الدفع" %}
+        {% include "./layout/header.html" %}
+    {% endwith %}
+{% else %}
+{% with title="Payout" %}
+    {% include "./layout/header.html" %}
+{% endwith %}
+{% endif %}    
+{% endblock %}
+
+
+    <style>
+        html {
+            overflow-y: auto;
+            letter-spacing: 0 !important;
+        }
+        .col-form-label{
+            letter-spacing: 0 !important;
+        }
+    </style>
+
+{% block content %}
+    {% load static %}
+
+    <style>
+
+.card-header{
+        background-color: rgb(225, 235, 247) !important;
+        border: 1px solid rgb(196, 206, 218) !important;
+    }
+    .card-header-dark{
+        background-color: rgb(25, 32, 41) !important;
+        border: 0 !important;
+    }
+    .carddy{
+        background-color: rgb(247, 247, 247) !important;
+    }
+    .card-dark{
+        background-color: rgb(33, 41, 51) !important;
+        border: 0 !important;
+    }
+
+
+        
+
+.blllu{
+        color: rgb(11, 111, 241) !important;
+        margin-right: 8px !important; 
+        float: right;
+    } 
+    .blllu-dark{
+
+        color: rgb(177, 200, 230) !important;
+        margin-right: 8px !important;
+        float: right;
+    }
+
+
+.form-control-dark{
+    background-color: #323741 !important;
+    border: 1px solid  #0f1013 !important;
+    color: rgb(199, 199, 199) !important;
+}
+
+
+.btn-primary{
+    background-color: rgb(37, 148, 192) !important;
+    color: rgb(254, 254, 255) !important;
+    border: 1px solid rgb(23, 104, 136) !important;
+}
+        
+
+.btn-primary-dark{
+    background-color: #323741 !important;
+    color: rgb(199, 199, 199) !important;
+    border: 1px solid  #21242b !important;
+    box-shadow: none !important;
+}
+        
+
+    
+.right{
+        position: absolute !important;
+        left: 20px !important;
+        top: 5px !important;
+        float: right !important;
+    }
+    
+
+
+    </style>
+
+    <div class=" page__container " style="margin-top: 0px;height: 100vh !important;">
+        <div class="col-lg-6 p-6" style="margin-top: 25px;" style="">
+            
+            {% get_current_language as lang %}
+            {% if lang == "ar" %}
+            <div class="list-group list-group-form " style="">
+                <div class="list-group-item d-flex align-items-center  card-header card-header-dark" style="padding-top:20px"> 
+                    <strong id="card_num" class="blllu blllu-dark"> </strong><b class="mediabout mediabout-dark" style="font-size: 18px;">أدخل معلومات ويسترون يونيون</b>
+                </div>
+                <div class="list-group-item carddy card-dark">
+                    <div class="form-group row align-items-center mb-0">
+                        <label class="col-form-label form-label col-sm-3 mediabout mediabout-dark" style="letter-spacing: 0 !important;">أسمك الكامل ( كما هو مكتوب في الجواز )</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-dark" id="passport_number" placeholder="الرجاء التأكد من إدخال الاسم بشكل صحيح"
+                                   value="{{ card.passport_number }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item carddy card-dark">
+                    <div class="form-group row align-items-center mb-0">
+                        <label class="col-form-label form-label col-sm-3 mediabout mediabout-dark" style="letter-spacing: 0 !important;">أسمك الكامل ( كما هو مكتوب في الجواز )</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-dark" id="full_name" placeholder="الرجاء التأكد من إدخال الاسم بشكل صحيح"
+                                   value="{{ card.full_name }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item carddy card-dark">
+                    <div class="form-group row align-items-center mb-0">
+                        <label class="col-form-label form-label mediabout mediabout-dark col-sm-3" style="letter-spacing: 0 !important;"> بلد الاقامة الحالية</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-dark" id="country"
+                                   placeholder="أين ستقوم بإستلام أموالك؟" value="{{ card.country }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item carddy card-dark">
+                    <div class="form-group row align-items-center mb-0">
+                        <label class="col-form-label form-label col-sm-3 mediabout mediabout-dark" style="letter-spacing: 0 !important;">عنوانك </label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control form-control-dark" id="address" placeholder="قم بإدخال عنوانك بشكل كامل"
+                                   value="{{ card.address }}">{{ card.address }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item carddy card-dark">
+                    <div class="form-group row align-items-center mb-0">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <a style="cursor: pointer" class="btn btn-primary btn-primary-dark" onclick="saveBank()">حفظ البيانات</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="list-group list-group-form " style="">
+                <div class="list-group-item d-flex align-items-center  card-header card-header-dark">
+                    <strong id="card_num" class="blllu blllu-dark"> </strong><b>Enter your Westron union information</b>
+                </div>
+                <div class="list-group-item carddy card-dark">
+                    <div class="form-group row align-items-center mb-0">
+                        <label class="col-form-label form-label col-sm-3 mediabout mediabout-dark">Enter your passport number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-dark" id="passport_number" placeholder="Please be sure you writing your correct full name"
+                                   value="{{ card.passport_number }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item carddy card-dark">
+                    <div class="form-group row align-items-center mb-0">
+                        <label class="col-form-label form-label col-sm-3 mediabout mediabout-dark">Full name ( as per your passport )</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-dark" id="full_name" placeholder="Please be sure you writing your correct full name"
+                                   value="{{ card.full_name }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item carddy card-dark">
+                    <div class="form-group row align-items-center mb-0">
+                        <label class="col-form-label form-label mediabout mediabout-dark col-sm-3">Country</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-dark" id="country"
+                                   placeholder="Where do you want to recieve the payment?" value="{{ card.country }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item carddy card-dark">
+                    <div class="form-group row align-items-center mb-0">
+                        <label class="col-form-label form-label col-sm-3 mediabout mediabout-dark" >Address</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control form-control-dark" id="address" placeholder="Please write a specific address"
+                                   value="{{ card.address }}">{{ card.address }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item carddy card-dark">
+                    <div class="form-group row align-items-center mb-0">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <a style="cursor: pointer" class="btn btn-primary btn-primary-dark" onclick="saveBank()">Save changes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+ 
+    </div>
+    <script>
+
+        let change = 0
+        var lang = "{{ lang }}"
+
+        $("#full_name").on('change', function(){
+            change = 1
+        })
+
+        $("#country").on('change', function(){
+            change = 1
+        })
+
+        $("#address").on('change', function(){
+            change = 1
+        })
+
+        $("#passport_number").on('change', function(){
+            change = 1
+        })        
+
+        function saveBank() {
+            card_id = '{{ card.id }}'
+            passport_number = $("#passport_number").val()
+            full_name = $("#full_name").val()
+            country = $("#country").val()
+            address = $("#address").val()
+
+            if (full_name == '' || country == '' || address == '' || passport_number == '') {
+                if (lang == 'ar')
+                    showAlert(0, 'من فضلك قم بادخال المعلومات')
+                else
+                    showAlert(0, 'Please insert every field.')
+                return;
+            }
+
+            if (change == 0) {
+                if (lang == 'ar')
+                    showAlert(0, 'أنت لم تغير أي شيء!')
+                else
+                    showAlert(0, "You didn't change anything!")
+                return;
+            }
+
+            user_id = '{{ request.user.id }}'
+            let url = '/save_card_info/'
+            let form_data = new FormData()
+            form_data.append('address', address)
+            form_data.append('country', country)
+            form_data.append('full_name', full_name)
+            form_data.append('passport_number', passport_number)
+            form_data.append('card_id', card_id)
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                async: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+            }).then(response => {
+                if (response.status == 1) {
+                    showAlert(1, 'Saved Successfully!!!')
+                    setInterval(function() {
+                        location.reload();
+                    }, 2000)
+                } else {
+                    showAlert(0, 'Errors in save!!')
+                }
+            })
+        }
+
+    </script>
+
+{% endblock %}

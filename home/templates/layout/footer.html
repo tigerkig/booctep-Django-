@@ -1,0 +1,651 @@
+{% load static %}
+{% load i18n %}
+<!-- Footer -->
+
+<script>
+    var userid = '{{request.user.id}}';
+</script>
+
+
+{% get_current_language as lang %}
+{% if lang == "en" %}
+<style>
+
+
+.social {
+    margin-top: 60px;
+    margin-left: 50px !important;
+}
+
+.social-follow {
+
+    margin-top: -30px;
+}
+
+
+</style>
+{% else %}
+<style>
+
+.box-chevron{
+    
+}
+
+.social {
+    margin-right: 0px !important;
+    margin-top: 60px;
+}
+
+</style>
+{% endif %}
+<style>
+    @media only screen and (max-width: 600px) {
+        .social {
+            margin-top: 0px !important;
+        }
+
+        .social {
+            margin-top: -30px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+    }
+
+    .social {
+        margin-right: auto;
+        margin-left: auto;
+    
+    }
+
+    .social-follow {
+
+    }
+
+    .cookiees {
+        display: flex;
+        display: none;
+        position: fixed;
+        bottom: 25px;
+        left: 25px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-wrap: nowrap;
+        background: #388bce;
+        z-index: 999999999;
+        height: 80px;
+        padding: 22px 22px 22px 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(65, 72, 86, 0.06);
+        transition: all 400ms ease-in-out;
+    }
+
+    .cookiees-dark{
+        background: #03101b;
+        
+    }
+
+    .cookiees-icon {
+        height: 36px;
+        width: 36px;
+        animation: spin 2s linear infinite;
+    }
+
+    .cookiees-message {
+        height: 36px;
+        padding: 0px 10px;
+        line-height: 36px;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .cookiees-accept {
+        height: 30px;
+        padding: 0 10px;
+        line-height: 30px;
+        border: none;
+        border-radius: 10px;
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 14px;
+        text-align: center;
+        background: #616B75;
+        cursor: pointer;
+        outline: none;
+        transition: background 250ms ease-in-out;
+        font-family: 'Montserrat', sans-serif;
+        user-select: none;
+    }
+
+    .cookiees-accept:hover {
+        background: #0071FF;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+
+.social-follow{
+    color: rgb(1, 50, 90);
+}
+
+.social-follow-dark{
+    color: rgb(202, 202, 202) !important;
+}
+
+.footcolor{
+    color: rgb(1, 50, 90);
+
+}
+
+.footcolor-dark{
+    color: rgb(202, 202, 202) !important;
+
+}
+
+.lineeee{
+    border-bottom: 1px solid rgb(226, 226, 226) !important;
+}
+
+.lineeee-dark{
+    border-bottom: 1px solid rgb(43, 52, 68) !important;
+}
+
+
+.dark-footer {
+    background: #222831 !important;
+    border-top: 1px solid #262a30;
+    border-bottom: 1px solid #262a30;
+}
+  
+
+
+
+  .is-combo-dark .combo-box,
+.is-combo-dark .image-combo-box,
+.is-combo-dark .stacked-combo-box,
+.is-combo-dark.user-combo-box {
+    background: #93a4be !important; 
+    border: 1px solid #8798b1 !important;
+    color: #223a4b !important;
+}
+
+.is-com:hover{
+    background: #f5f6f8 !important; 
+    border: 1px solid #f5f6f8;
+    color: #2c78c0 !important;
+}
+
+.is-com-dark{
+    background: #101313 !important; 
+    border: 1px solid #212129;
+    color: #213e5a !important;
+
+}
+
+.is-combo-dark .combo-box:hover:hover,
+.is-combo-dark .image-combo-box:hover,
+.is-combo-dark .stacked-combo-box:hover,
+.is-combo-dark.user-combo-box:hover {
+    background: #93a4be !important; 
+    border: 1px solid #8798b1 !important;
+    color: #233241;
+}
+
+
+.is-combo-dark .combo-box:hover,
+.is-combo-dark .image-combo-box,
+.is-combo-dark .stacked-combo-box,
+.is-combo-dark.user-combo-box {
+    background: #93a4be !important; 
+    border: 1px solid #8798b1 !important;
+    color: #616B75;
+}
+
+
+.is-combo-dark .combo-box .box-dropdown .dropdown-inner ul,
+.is-combo-dark .image-combo-box .box-dropdown .dropdown-inner ul,
+.is-combo-dark .stacked-combo-box .box-dropdown .dropdown-inner ul,
+.is-combo-dark .user-combo-box .box-dropdown .dropdown-inner ul {
+    background: #93a4be !important; 
+    border: 1px solid #8798b1 !important;
+    border: 1px solid #9c9c9c;
+}
+
+.is-combo-dark .combo-box .box-dropdown .dropdown-inner ul:hover,
+.is-combo-dark .image-combo-box .box-dropdown .dropdown-inner ul:hover,
+.is-combo-dark .stacked-combo-box .box-dropdown .dropdown-inner ul:hover,
+.is-combo-dark .user-combo-box .box-dropdown .dropdown-inner ul:hover {
+    background: #6c7e99 !important; 
+    border: 1px solid #8798b1 !important;
+    color: #616B75;
+}
+
+
+
+
+.is-combo-dark .combo-box .box-dropdown .dropdown-inner ul li:hover,
+.is-combo-dark .image-combo-box .box-dropdown .dropdown-inner ul li:hover,
+.is-combo-dark .stacked-combo-box .box-dropdown .dropdown-inner ul li:hover,
+.is-combo-dark .user-combo-box .box-dropdown .dropdown-inner ul li:hover {
+    background: #8193ad !important; 
+    border: 1px solid #7888a0 !important;
+    border: 1px solid #575757 !important;
+}
+
+.is-combo-dark .combo-box .box-dropdown .dropdown-inner ul li,
+.is-combo-dark .image-combo-box .box-dropdown .dropdown-inner ul li,
+.is-combo-dark .stacked-combo-box .box-dropdown .dropdown-inner ul li,
+.is-combo-dark .user-combo-box .box-dropdown .dropdown-inner ul li {
+    color: azure !important;
+}
+
+
+
+.is-combo-dark .combo-box .box-dropdown .dropdown-inner ul li span,
+.is-combo-dark .image-combo-box .box-dropdown .dropdown-inner ul li span,
+.is-combo-dark .stacked-combo-box .box-dropdown .dropdown-inner ul li span,
+.is-combo-dark .user-combo-box .box-dropdown .dropdown-inner ul li span {
+    color: #333333 !important;
+}
+
+.is-combo-dark .combo-box .box-dropdown .dropdown-inner ul li span:hover,
+.is-combo-dark .image-combo-box .box-dropdown .dropdown-inner ul li span:hover,
+.is-combo-dark .stacked-combo-box .box-dropdown .dropdown-inner ul li span:hover,
+.is-combo-dark .user-combo-box .box-dropdown .dropdown-inner ul li span:hover {
+    color: #242424 !important;
+}
+
+
+@media (max-width: 624px) {
+
+.logo-footer{
+    display: none !important;
+}
+}
+
+
+.is-comboe{
+    background-color: #fff;
+}
+
+.is-comboe-dark{
+    background: #2e3a4d !important; 
+    border: 1px solid #242f42 !important;
+    color: #bfcddb !important;
+}
+
+</style>
+
+
+<div class="cookiees">
+  <img class="cookiees-icon" src="https://raw.githubusercontent.com/s1mpson/-/master/codepen/we-use-cookies/cookie.png">
+  <span class="cookiees-message">We are using cookies to give you best experience.</span>
+  <button class="cookiees-accept" onclick="hideCookie()">OK</button>
+</div>
+
+<footer class="footer dark-footer">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-2 ">
+                {% get_current_language as lang %}
+                {% if lang == "ar" %}
+                <div class="logo-footer">
+                    <img src="{% static 'ar/assets/img/logo/booctep.png' %}" alt="Booctep Logo - Arabic" class="logo-footer-ar">
+                    <!-- <img src="{% static 'assets/img/payment.png' %}" alt="Booctep Payments - Arabic" style="width: 180px"> -->
+                </div>
+                {% else %}
+                <div class="logo-footer" style="margin-right: 50px;">
+                    <img src="{% static 'assets/img/logo/booctep-tran.png' %}" alt="Booctep Logo - English" class="logo-footer">
+                    <!-- <img src="{% static 'assets/img/payment.png' %}" alt="Booctep Payments - English" style="width: 180px"> -->
+                </div>
+                {% endif %}
+            </div>
+            <!-- Column -->
+            <div class="column is-7">
+                <div class="footer-columns columns lineeee lineeee-dark" style="border-bottom: 1px solid rgb(226, 226, 226) !important;">
+                    <!-- Column -->
+                    <div class="column">
+                        <ul class="footer-column footer-column-dark">
+                            <div class="column">
+                                {% get_current_language as lang %}
+                                {% if lang == "ar" %}
+                                <a href="/{{ lang }}/about" style="font-weight: 400;" class="footcolor footcolor-dark"><b>{% trans 'About us' %}</b></a>
+                                {% else %}
+                                <a href="/{{ lang }}/about" style="font-weight: 400;" class="footcolor footcolor-dark">{% trans 'About us' %}</a>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+                    <!-- Column -->
+                    <div class="column">
+                        <ul class="footer-column footer-column-dark">
+                            <div class="column">
+                                {% get_current_language as lang %}
+                                {% if lang == "ar" %}
+                                <a href="/{{ lang }}/faqs" style="font-weight: 400;" class="footcolor footcolor-dark"><b>{% trans 'FAQs' %}</b></a>
+                                {% else %}
+                                <a href="/{{ lang }}/faqs" style="font-weight: 400;" class="footcolor footcolor-dark">{% trans 'FAQs' %}</a>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+                    <!-- Column -->
+                    <div class="column">
+                        <ul class="footer-column footer-column-dark">
+                            <div class="column">
+                                {% get_current_language as lang %}
+                                {% if lang == "ar" %}
+                                <a href="/{{ lang }}/help" style="font-weight: 400;" class="footcolor footcolor-dark"><b>{% trans 'Help' %}</b></a>
+                                {% else %}
+                                <a href="/{{ lang }}/help" style="font-weight: 400;" class="footcolor footcolor-dark">{% trans 'Help' %}</a>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+                    <!-- Column -->
+                    <div class="column">
+                        <ul class="footer-column footer-column-dark">
+                            <div class="column">
+                                {% get_current_language as lang %}
+                                {% if lang == "ar" %}
+                                <a href="/{{ lang }}/terms" style="font-weight: 400;" class="footcolor footcolor-dark"><b>{% trans 'Terms' %}</b></a>
+                                {% else %}
+                                <a href="/{{ lang }}/terms" style="font-weight: 400;" class="footcolor footcolor-dark">{% trans 'Terms' %}</a>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-columns columns">
+                    <!-- Column -->
+                    <div class="column">
+                        <ul class="footer-column footer-column-dark">
+                            <div class="column">
+                                {% get_current_language as lang %}
+                                {% if lang == "ar" %}
+                                <a href="/{{ lang }}/privacy_policy/"
+                                   style="font-weight: 400;margin: 0 auto;" class="footcolor footcolor-dark"><b>{% trans 'Privacy & Policy' %}</b></a>
+                                {% else %}
+                                <a href="/{{ lang }}/privacy_policy/"
+                                   style="font-weight: 400;margin: 0 auto;" class="footcolor footcolor-dark">{% trans 'Privacy & Policy' %}</a>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+                    <!-- Column -->
+                    <div class="column ">
+                        <ul class="footer-column footer-column-dark">
+                            <div class="column">
+                                {% get_current_language as lang %}
+                                {% if lang == "ar" %}
+                                <a href="/{{ lang }}/contact_us"
+                                   style="font-weight: 400;margin: 0 auto;" class="footcolor footcolor-dark"><b>{% trans 'Contact us' %}</b></a>
+                                {% else %}
+                                <a href="/{{ lang }}/contact_us"
+                                   style="font-weight: 400;margin: 0 auto;" class="footcolor footcolor-dark">{% trans 'Contact us' %}</a>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+                    <!-- Column -->
+                    <div class="column ">
+                        <ul class="footer-column footer-column-dark">
+                            <div class="column">
+                                {% get_current_language as lang %}
+                                {% if lang == "ar" %}
+                                <a href="/{{ lang }}/become"
+                                   style="font-weight: 400;margin: 0 auto;" class="footcolor footcolor-dark"><b>أصبح معلم</b></a>
+                                {% else %}
+                                <a href="/{{ lang }}/become"
+                                   style="font-weight: 400;margin: 0 auto;" class="footcolor footcolor-dark">{% trans 'Become a teacher' %}</a>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+                    <!-- Column -->
+                </div>
+            </div>
+
+            <div class="column is-2 ">
+                <div class="control-language-parent"> 
+                    <div class="control-language is-combo is-combo-dark" >
+                        <div class="combo-box" style="">
+                            <div class="box-inner">
+                                <div class="combo-item">
+                                    <input type="hidden" id="language" value='{{ lang }}'>
+                                    <i class="combo-item-i fa fa-language"></i>
+                                    <span class="combo-item-span selected-item" selected="selected">
+                                    {% if lang == "ar" %}
+                                        {% trans 'Arabic' %}
+                                    {% else %}
+                                        English
+                                    {% endif %}                                    
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="box-chevron">
+                                <i data-feather="chevron-down" class="box-chevron-i"></i>
+                            </div>
+                            <div class="box-dropdown" id="directionSwitch">
+                                <div class="dropdown-inner has-slimscroll">
+                                    <ul>
+                                        {% if lang == 'ar' %}
+                                            <li class="is-active">
+                                                <a style="width: 100%; display: flex;">
+                                                    <span class="item-icon"></span>
+                                                    <span class="item-name translate footcolor footcolor-dark"
+                                                          id="ar">{% trans 'Arabic' %}</span>
+                                                    <span class="checkmark"><i data-feather="check"></i></span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="/en" style="width: 100%; display: flex;" class="switch-lang">
+                                                    <span class="item-icon"></span>
+                                                    <span class="item-name translate footcolor footcolor-dark" id="en">English</span>
+                                                    <span class="checkmark"><i data-feather="check"></i></span>
+                                                </a>
+                                            </li>
+                                        {% else %}
+                                            <li class="is-active">
+                                                <!-- <a href="/" style="width: 100%; display: flex;" id="en_page"> -->
+                                                <a style="width: 100%; display: flex;">
+                                            <span class="item-icon">
+                                            </span>
+                                                    <span class="item-name translate" class="" id="en1">English</span>
+                                                    <span class="checkmark">
+                                                <i data-feather="check"></i>
+                                            </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/ar" style="width: 100%; display: flex;" class="switch-lang">
+                                                    <span class="item-icon">
+                                                    </span>
+                                                    <span class="item-name translate" class=""
+                                                          id="ar1">{% trans 'Arabic' %}</span>
+                                                    <span class="checkmark">
+                                                        <i data-feather="check"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="social">
+                    {% get_current_language as lang %}
+                    {% if lang == "ar" %}
+                    <b class="social-follow social-follow-dark" style="margin-top: 10px;">نتشرف بمتابعتك</b><br>
+                    {% else %}
+                    <p class="social-follow social-follow-dark" style="margin-top: 10px;">Follow us</p><br>
+                    {% endif %}
+                    <a href="https://www.instagram.com/booctep/" target="_blank">
+                        <img style="" src="{% static 'assets/img/instagram.png' %}" width="25"
+                             height="25" style="cursor:pointer" alt="instagram.com/booctep" class="footer-instagram" /></a>
+                             <a href="https://www.twitter.com/booctep/" target="_blank">
+                                 <img style="" src="{% static 'assets/img/twitter.png' %}" width="25"
+                                      height="25" style="cursor:pointer" alt="instagram.com/booctep" class="footer-twitter" alt="Follow us Twitter" /></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="copyright">
+    <div class="container">
+        <p style="font-size:14px"><b>{% trans 'Made with' %}
+            <span class="fa fa-heart" style="color: rgb(241, 75, 75);"></span> {% trans "By Booctep's Designers." %}</b>
+        </p>
+    </div>
+</div>
+
+
+<script>
+
+    function showCookie() {
+        $(".cookiees").css({
+            'display': 'flex'
+        })
+    }
+
+    function hideCookie() {
+        $(".cookiees").css({
+            'display': 'none'
+        })
+        document.cookie = "username=support@booctop.com";
+    }
+
+    // ip = '{{ ip }}'
+    // ip_str = localStorage.getItem(ip)
+    // console.log("ip_str", ip_str)
+    // if (ip_str == null || ip_str == undefined || ip_str == '') {
+    //     showCookie()
+    //     localStorage.setItem(ip, 'yes')
+    // }
+
+    $(document).ready(function () {
+        let isShowCookie = true;
+        let cookies = document.cookie;
+        let cookie_arrs = cookies.split(";");
+        console.log(cookie_arrs);
+        for (let item of cookie_arrs) {
+            let key_value = item.split("=");
+            if ((key_value[0] == "username") && (key_value[1] == "support@booctop.com")) {
+                isShowCookie = false;
+            }
+        }
+        console.log(isShowCookie);
+        if (isShowCookie == true) {
+            showCookie();
+        }
+
+        let cur_url = window.location.href;
+        let arr = cur_url.split("/");
+        let cur_domain = arr[2];
+        let cur_path = window.location.pathname;
+        let cur_subpath = cur_path.substr(3, cur_path.length);
+        let cur_paths = cur_path.split("/");
+        let cur_lang = cur_paths[1];
+        let toggle_lang = cur_lang === "ar" ? "en" : "ar";
+
+        let params_str = "";
+        if (cur_url.indexOf("?") !== -1) {
+            params_str = cur_url.substr(cur_url.indexOf("?"), cur_url.length);
+        }
+
+        let switch_url = window.location.protocol + '//' + cur_domain + "/" + toggle_lang + cur_subpath + params_str;
+
+        $(".switch-lang").attr('href', switch_url);
+    });
+</script>
+
+<script>
+    $(".darkmode").click(function(){ //1
+        $("body").toggleClass("dark")//2
+          .css( //3
+            $("body").hasClass("dark") ? //4
+              {background:"#010508", color:"#f9f9f9"} : {background:"#f9f9f9", color:"#202225"} //5
+          );
+    
+        $(".bg-white").toggleClass("dark")//2
+          .css( //3
+            $(".bg-white").hasClass("dark") ? //4
+              {background:"#344258", color:"#f9f9f9"} : {background:"#f9f9f9", color:"#202225"} //5
+          );
+    
+          $(".border-top").toggleClass("dark")//2
+            .css( //3
+              $(".border-top").hasClass("dark") ? //4
+                {borderTop:"1px solid #000"} : {borderTop:"1px solid #eaebec"} //5
+          );
+    
+    
+      });
+      
+    
+      
+      // It's not clear if the ternary counts as 2 lines or 1 when I'm trying to minimise line count, but I'm counting it as 2
+      
+    </script>
+
+    <script>
+$('.tabs .tab').click(function(){
+    if ($(this).hasClass('teacher')) {
+        $('.tabs .tab').removeClass('active');
+        $(this).addClass('active');
+        $('.cont').hide();
+        $('.teacher-cont').show();
+        window.location.hash = '';
+    } 
+    if ($(this).hasClass('student')) {
+        $('.tabs .tab').removeClass('active');
+        $(this).addClass('active');
+        $('.cont').hide();
+        $('.student-cont').show();
+        window.location.hash = '';
+    }
+});
+
+
+$('.tabs .tab').click(function(){
+    if ($(this).hasClass('teachernot')) {
+        $('.tabs .tab').removeClass('active');
+        $(this).addClass('active');
+        $('.cont').hide();
+        $('.teachernot-cont').show();
+        window.location.hash = '';
+    }
+    if ($(this).hasClass('studentnot')) {
+        $('.tabs .tab').removeClass('active');
+        $(this).addClass('active');
+        $('.cont').hide();
+        $('.studentnot-cont').show();
+        window.location.hash = '';
+    }
+});
+
+
+$('.container .bg').mousemove(function(e){
+    var amountMovedX = (e.pageX * -1 / 30);
+    var amountMovedY = (e.pageY * -1 / 9);
+    $(this).css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
+});
+
+
+
+
+    </script>

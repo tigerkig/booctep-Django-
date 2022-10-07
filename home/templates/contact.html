@@ -1,0 +1,296 @@
+{% extends "base.html" %} {% block content %} {% load static %} {% load i18n %}
+<!-- CSS only -->
+
+<link rel="stylesheet" href="/static/student/assets/css/bootstrap.css">
+
+    <style>
+
+.faq-nav {
+  flex-direction: column;
+  margin: 0 0 32px;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 5px rgba(85, 85, 85, 0.15);
+}
+
+.faq-nav-dark{
+  border: 1px solid rgb(15, 15, 15);
+}
+
+.faq-nav .nav-link {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 13px 16px;
+  background-color: rgb(255, 255, 255);
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  color: #616161;
+  transition: background-color 0.2s ease;
+}
+.faq-nav .nav-link-dark {
+  background-color: #222831;
+  border-bottom: 1px solid #151a22;
+  color: #616161;
+}
+.faq-nav .nav-link:hover {
+  background-color: #d6d6d6;
+}
+.faq-nav .nav-link-dark:hover {
+  background-color: #0e0d0d;
+}
+.faq-nav .nav-link.active {
+  background-color: #eeeeee;
+  font-weight: 600;
+  color: rgba(66, 66, 66, 0.87);
+}
+.faq-nav .nav-link-dark.active{
+  background-color: #15171f;
+  font-weight: 700;
+  color: rgba(187, 187, 187, 0.87);
+}
+.faq-nav .nav-link:last-of-type {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-bottom: 0;
+}
+.faq-nav .nav-link i.mdi {
+  margin-right: 5px;
+  font-size: 18px;
+  position: relative;
+}
+
+.tab-content .card {
+  border-radius: 0;
+}
+.card .card-header {
+  padding: 15px 16px;
+  border-radius: 0;
+  color: #1a1919 !important;
+  background: #f6f6f6 !important;
+}
+.card .card-header-dark {
+  padding: 15px 16px;
+  border-radius: 0;
+  color: #b8b8b8 !important;
+  background: #15171f !important;
+}
+.card-headerh {
+  color: #1a1919 !important;
+}
+.card-headerh-dark {
+  color: #b8b8b8 !important;
+}
+
+
+.mediabout{
+    color: rgb(9, 23, 41) !important;
+}
+  
+.mediabout-dark{
+   color: rgb(155, 155, 155) !important;
+}
+
+.tab-content .card-header h5 {
+  margin: 0;
+}
+.tab-content .card-header h5 button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+  text-align: left;
+  white-space: normal;
+}
+.tab-content .card-header h5 button:hover, .tab-content .card-header h5 button:focus, .tab-content .card-header h5 button:active, .tab-content .card-header h5 button:hover:active {
+  text-decoration: none;
+}
+.tab-content .card-body p {
+  color: #616161;
+}
+.tab-content .card-body p:last-of-type {
+  margin: 0;
+}
+
+.accordion > .card:not(:first-child) {
+  border-top: 0;
+}
+
+.collapse.show .card-body {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+  
+.hero-faqs-dark{
+  position: relative;
+  height: 100%;
+  padding-top: 70px !important;
+  background-size: cover;
+  background-image: linear-gradient(to bottom, rgba(42, 52, 66, 0.73), rgba(8, 13, 19, 0.52)),
+  url('../img/faqs.jpg') !important;
+
+}
+
+    </style>
+
+    <style>
+        .accordion__menu {
+            border: 0.5px solid #dbdbdb;
+            background: white !important
+        }
+    </style>
+
+    <div class="products-navigation" style="display: none;">
+    </div>
+
+    <div class="terms">
+        <!-- Brands -->
+        <div id="brands-tab" class="store-tab-pane is-active">
+            <!-- Timeline -->
+            <section class="hero is-small is-bold hero-contact">
+                <div class="hero-body">
+                    <div class="container">
+                        {% get_current_language as lang %}
+                        {% if lang == "ar" %}
+                        <h1 class="booctep-1" data-shadow='Booctep'>تواصل معنا</h1>
+                        <h2 class="booctep-h2">منصة بوستيب هنا للمساعدة، اكتشف حساباتنا على وسائل التواصل الاجتماعي والطرق المختلفة للاتصال بنا حتى نتمكن من تزويدك بالدعم الذي تحتاجه.</h2>
+
+                        {% else %}
+                        <h1 class="booctep-1" data-shadow='Booctep'>{% trans 'Contact us' %}</h1>
+                        <h2 class="booctep-h2">Booctep is here to help. Discover our social media accounts and different ways to contact us so that we can provide you with the support you need.</h2>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+
+            <div class="terms-page" id="faq">
+                <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="nav nav-pills faq-nav faq-nav-dark" id="faq-tabs" role="tablist" aria-orientation="vertical">
+                            <a href="#tab1" class="nav-link active active-dark" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
+                                {% trans 'Contact us' %}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="tab-content" id="faq-tab-content">
+                            <div class="tab-pane show active" id="tab1" role="tabpanel" aria-labelledby="tab1">
+                                {% get_current_language as lang %}
+                                {% if lang == "ar" %}
+                                <div class="accordion" id="accordion-tab-1">
+                                    <div class="card">
+                                        <div class="card-header card-header-dark" id="accordion-tab-1-heading-1">
+                                            <h5>
+                                                <button class="btn btn-link card-headerh card-headerh-dark" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-1" aria-expanded="false" aria-controls="accordion-tab-1-content-1">البريد الإلكتروني</button>
+                                            </h5>
+                                        </div>
+                                        <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">
+                                            <div class="card-body  ">
+                                                <p class="mediabout mediabout-dark">لديك إستفسار <br>
+                                                سنكون سعداء بخدمتك دائما, نحن متاحون بالخدمة 24 ساعة / كل أيام الأسبوع
+                                                </p>
+                                                <p class="mediabout mediabout-dark"><i class="fa fa-envelope"></i> support@booctep.com</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="accordion-tab-1-heading-2">
+                                            <h5>
+                                                <button class="btn btn-link card-headerh card-headerh-dark" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-2" aria-expanded="false" aria-controls="accordion-tab-1-content-2">الدردشة المباشرة</button>
+                                            </h5>
+                                        </div>
+                                        <div class="collapse" id="accordion-tab-1-content-2" aria-labelledby="accordion-tab-1-heading-2" data-parent="#accordion-tab-1">
+                                            <div class="card-body">
+                                                <p class="mediabout mediabout-dark">قدم استفسارك في المربع الأيمن السفلي "الدردشة المباشرة" ونحن مستعدون دائمًا لمساعدتك.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="accordion-tab-1-heading-3">
+                                            <h5>
+                                                <button class="btn btn-link card-headerh card-headerh-dark" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-3" aria-expanded="false" aria-controls="accordion-tab-1-content-3">حسابات مواقع التواصل الإجتماعي</button>
+                                            </h5>
+                                        </div>
+                                        <div class="collapse" id="accordion-tab-1-content-3" aria-labelledby="accordion-tab-1-heading-3" data-parent="#accordion-tab-1">
+                                            <div class="card-body">
+                                                <p class="mediabout mediabout-dark"><img src="{% static 'assets/img/instagram.png' %}" class="footer-instagram" alt="Instagram support" style="width: 25px;margin-right: 5px;margin-top: 10px;"> رابط المساعدة عن طريق الانستقرام <a href="https://instagram.com/booctep" target="_blank" class="skyblue-hover">هنا</a>
+                                                
+                                                    <p class="mediabout mediabout-dark">
+                                                        <img src="{% static 'assets/img/twitter.png' %}" class="footer-twitter" alt="Twitter support" style="width: 25px;margin-right: 5px;margin-top: 10px;"> رابط المساعدة عن طريق تويتر <a href="https://twitter.com/BooctepSupport" target="_blank" class="skyblue-hover">هنا</a></p>
+                                                    </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="accordion" id="accordion-tab-1">
+                                    <div class="card">
+                                        <div class="card-header card-header-dark" id="accordion-tab-1-heading-1">
+                                            <h5>
+                                                <button class="btn btn-link card-headerh card-headerh-dark" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-1" aria-expanded="false" aria-controls="accordion-tab-1-content-1">Support Email</button>
+                                            </h5>
+                                        </div>
+                                        <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">
+                                            <div class="card-body  ">
+                                                <p class="mediabout mediabout-dark">Have a Query? <br>
+                                                We will be happy for help, we are Available 24/7
+                                                </p>
+                                                <p class="mediabout mediabout-dark"><i class="fa fa-envelope"></i> support@booctep.com</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="accordion-tab-1-heading-2">
+                                            <h5>
+                                                <button class="btn btn-link card-headerh card-headerh-dark" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-2" aria-expanded="false" aria-controls="accordion-tab-1-content-2">Live chat</button>
+                                            </h5>
+                                        </div>
+                                        <div class="collapse" id="accordion-tab-1-content-2" aria-labelledby="accordion-tab-1-heading-2" data-parent="#accordion-tab-1">
+                                            <div class="card-body">
+                                                <p class="mediabout mediabout-dark">Provide your query in the bottom right box "Live chat" we are always ready to help you.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="accordion-tab-1-heading-3">
+                                            <h5>
+                                                <button class="btn btn-link card-headerh card-headerh-dark" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-3" aria-expanded="false" aria-controls="accordion-tab-1-content-3">Social Media accounts</button>
+                                            </h5>
+                                        </div>
+                                        <div class="collapse" id="accordion-tab-1-content-3" aria-labelledby="accordion-tab-1-heading-3" data-parent="#accordion-tab-1">
+                                            <div class="card-body">
+                                                <p class="mediabout mediabout-dark"><img src="{% static 'assets/img/instagram.png' %}" class="footer-instagram" alt="Instagram support" style="width: 25px;margin-right: 5px;margin-top: 10px;"> Instagram account click <a href="https://instagram.com/booctep" target="_blank" class="skyblue-hover">here</a>
+                                                
+                                                <p class="mediabout mediabout-dark">
+                                                    <img src="{% static 'assets/img/twitter.png' %}" class="footer-twitter" alt="Twitter support" style="width: 25px;margin-right: 5px;margin-top: 10px;"> Twitter account click <a href="https://twitter.com/BooctepSupport" target="_blank" class="skyblue-hover">here</a></p>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = '6b722eb5f4eb4970707cac5bf4d217dec23526fe';
+        window.smartsupp||(function(d) {
+            var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+            s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+            c.type='text/javascript';c.charset='utf-8';c.async=true;
+            c.src='//www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+        })(document);
+        </script>
+
+{% endblock %}

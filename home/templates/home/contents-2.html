@@ -1,0 +1,115 @@
+{% load static %} {% load i18n %}
+<!-- Start Carousel -->
+
+<style>
+  .top {
+    position: relative;
+    background: linear-gradient(
+      180deg,
+      rgba(13, 52, 96, 1) 0%,
+      rgba(0, 99, 236, 1) 100%
+    );
+    height: auto;
+    width: 100%;
+    color: #fff;
+  }
+
+  .top strong {
+    color: #fff;
+    float: right;
+    text-decoration: underline;
+    font-weight: 400;
+  }
+
+  .top-dark {
+    position: relative;
+    background: linear-gradient(
+      180deg,
+      rgb(124, 155, 190) 0%,
+      rgb(100, 121, 150) 100%
+    );
+    height: auto;
+    width: 100%;
+    color: rgb(13, 39, 56);
+  }
+
+  .slide-dark {
+    background-color: rgb(25, 31, 51) !important;
+    border: 1px solid rgb(18, 23, 39);
+  }
+
+  .mediabout {
+    color: rgb(9, 23, 41) !important;
+  }
+
+  .mediabout-dark {
+    color: rgb(219, 219, 219) !important;
+  }
+
+  .blllu {
+    color: rgb(11, 111, 241) !important;
+    float: left;
+  }
+  .blllu-dark {
+    color: rgb(177, 200, 230) !important;
+    float: left;
+    left: 10px !important;
+  }
+
+  .next-dark {
+    background-color: rgb(126, 167, 194);
+    border: 1px solid rgb(104, 132, 151);
+  }
+  .prev-dark {
+    background-color: rgb(126, 167, 194);
+    border: 1px solid rgb(104, 132, 151);
+  }
+</style>
+
+{% comment %} {% if stu_courses %} {% endcomment %}
+<div class="top aut-height">
+  <div class="container">
+    {% get_current_language as lang %} 
+    {% if lang == "ar" %}
+    <h2 style="margin-bottom: 10px">مرحبك بك ,&nbsp;
+      <span style="font-weight: bold">{{user.first_name}}&nbsp;{{user.last_name}}</span>
+      
+    </h2>
+    {% else %}
+    <h2 style="margin-bottom: 10px">
+      {% trans 'Welcome Back' %},&nbsp;
+      <span style="font-weight: bold">{{user.first_name}}&nbsp;{{user.last_name}}</span>
+      
+    </h2>
+    {% endif %}
+    {% get_current_language as lang %} 
+    {% if lang == "ar" %}
+    {% if user.group_id == 3 %}
+      <a href="/{{lang}}/teacher/courses" style="color:rgb(217, 251, 255) "><b>أضف دورة جديدة</b></a>
+    {% endif %}
+
+    {% else %}
+    {% if user.group_id == 3 %}
+    <a href="/{{lang}}/teacher/courses" style="color:rgb(217, 251, 255) ">Add new course</a>
+    {% endif %}
+
+    {% endif %}
+
+
+    {% get_current_language as lang %} 
+    {% if lang == "ar" %}
+    {% if user.group_id == 4 %}
+      <a href="/{{lang}}/courses" style="color:rgb(217, 251, 255) "><b>أكمل التعلم</b></a>
+    {% endif %}
+
+    {% else %}
+    {% if user.group_id == 4 %}
+    <a href="/{{lang}}/courses" style="color:rgb(217, 251, 255) "><b> continue learning</b></a>
+    {% endif %}
+
+    {% endif %}
+    </div>
+
+  </div>
+</div>
+</div>

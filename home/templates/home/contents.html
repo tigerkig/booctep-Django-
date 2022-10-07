@@ -1,0 +1,73 @@
+{% load static %}
+{% load i18n %}
+
+<style>
+  element.style{
+    width: 0;
+  }
+.second-button{
+  background-color: #efecec;
+}
+.second-button-dark{
+  background-color: #4f668b !important;
+  color: #efecec !important;
+}
+
+</style>
+
+
+{% get_current_language as lang %}
+{% if lang == "ar" %}
+<section class="hero is-medium hero-homepage-2">
+    <div class="hero-body">
+      <div class="container">
+        <h4 class="title">
+          هل أنت جاهز للتعلم؟
+        </h4>
+
+
+        <div class="typewritter">
+           <div class="container-title" style="margin-bottom:15px">
+               <h1 class="typewritter-title">
+                   <span class="primary__title" style="color: #fff !important;font-weight: 500;font-size: large"><b class="typewritter-title-white">تعلم</b>  &nbsp;</span><span class="secondary__title"> </span></h1>
+           </div>
+         </div>
+
+         <div class="buttons" id='section2'>
+             <a class="button second-button" href="/{{lang}}/signup">
+               <b><p style="padding-left: 15px;padding-right: 15px;">ابدأ الان</p></b>
+             </a>
+         </div>
+
+        </div>
+      </div>
+    </div>
+</section>
+{% else %}
+<!-- Section -->
+<section class="hero is-medium hero-homepage">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Are you ready to learn?
+      </h1>
+
+
+      <div class="typewritter">
+         <div class="container-title" style="margin-bottom:15px">
+             <h1 class="typewritter-title">
+                 <span class="primary__title" style="color: #fff !important;font-weight: 500;font-size: large"><b class="typewritter-title-white">Learn</b> &nbsp;</span><span class="secondary__title"> </span></h1>
+         </div>
+       </div>
+
+       <div class="buttons" id='section2'>
+           <a class="button second-button" href="/{{lang}}/signup">
+             <b><p style="padding-left: 15px;padding-right: 15px;">Get Started</p></b>
+           </a>
+       </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% load static %} {% block head %}
+
+{% endblock %}
+{% block content %}
+
+   {% for course in purchase_courses %}
+   <div class="notifications__item cartitem cartitempage"  
+   data-id="{{ course.id }}">
+   <div class="notifications__item__avatar">
+      <img src="{% static course.cover_img %}" />
+   </div>
+
+   <div class="notifications__item__content">
+         <p >${{ course.price }}</p>
+      <span class="notifications__item__title cartitempagename">{{ course.name }}</span>
+      <span class="notifications__item__message">{{ course.description }}</span>
+
+   </div>
+   <div>
+      <div class="notifications__item__option archive js-option">
+
+         <p class="notifications__item__option-i deletefromcart" data-id="{{ course.id}}"><i class="fas fa-trash" style="font-size: large;color: rgb(66, 87, 110) "></i></p>
+         <p class="notifications__item__option-i"><i class="fas fa-heart" style="font-size: large;color: red ;"></i></p>
+      </div>
+   </div>
+   </div>
+   {% endfor %}
+   
+   <p>Payment done.</p>
+
+{% endblock %}

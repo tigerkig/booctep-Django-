@@ -1,0 +1,535 @@
+{% load static %}
+{% load i18n %}
+<!-- Categories -->
+{% get_current_language as lang %}
+{% if lang == "ar" %}
+
+<style>
+    .control p{
+        text-align: right !important;
+    }
+</style>
+{% endif %}
+
+<style>
+    .explore-item-dark:hover{
+        border: 1px solid #060808 !important;
+        background-color: #050607;
+        transition: 1ms;
+    }
+
+
+.accordion__toggle  {
+  padding: .75rem 1rem .75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #f0f1f1 !important;
+  border: 1px solid #e6e6e6 !important;
+  color: #272c33 !important;
+  font-weight: 500
+}
+
+.accordion__toggle-dark{
+  background-color: #0a131d !important;
+  border-top: 1px solid #03070c !important;
+  border-bottom: 1px solid #0c1011 !important;
+  color: #d4d4d4 !important;
+}
+
+.accordion__toggle-icon {
+  transform: rotate(0)
+}
+
+.accordion__item.open .accordion__toggle-icon {
+  transform: rotate(-180deg)
+}
+
+.accordion__menu-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #c5d9df;
+  color: rgba(37, 39, 43, 0.7);
+  font-size:11px;
+  padding: .5rem 1rem .5rem 1.5rem
+}
+
+.accordion__toggle{
+        border-bottom: none !important;
+    }
+.accordion__toggle{
+        border-bottom: none !important;
+    }
+
+[dir=ltr] .accordion__toggle-icon {
+  transform: rotate(0)
+}
+
+[dir=ltr] .accordion__item.open .accordion__toggle-icon {
+  transform: rotate(-180deg)
+}
+
+[dir=ltr] .accordion__menu-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #c5d9df;
+  color: rgba(37, 39, 43, 0.7);
+  font-size:11px;
+  padding: .5rem 1rem .5rem 1.5rem
+}
+
+    [dir=ltr] .accordion__toggle{
+        border-bottom: none !important;
+    }
+    [dir=rtl] .accordion__toggle{
+        border-bottom: none !important;
+    }
+
+.accordion__menu-link{
+    border: 1px solid #e9e9e9 !important;
+}
+
+.accordion__menu-link-dark{
+    border: 1px solid #0f1014 !important;
+}
+
+
+
+.soci{
+        background: #4479ce !important;
+        color: #fff !important;
+    }
+    .soci-dark{
+        background: rgb(169, 189, 255) !important;
+        border: 1px solid #050607 !important;
+        color: #122b53 !important;
+    }
+
+    .socig{
+        background: #8f0d0d !important;
+        color: rgb(255, 255, 255);
+    }
+    .socig-dark{
+        background: #e68888 !important;
+        border: 1px solid #470101 !important;
+        color: rgb(71, 1, 1) !important;
+    }
+
+    .soci:hover{
+        background: #4479ce !important;
+        color: #fff !important;
+    }
+    .soci-dark:hover{
+        background: rgb(169, 189, 255) !important;
+        border: 1px solid #050607 !important;
+        color: #122b53 !important;
+    }
+
+    .socig:hover{
+        background: #8f0d0d !important;
+        color: rgb(255, 255, 255) !important;
+    }
+    .socig-dark:hover{
+        background: #e68888 !important;
+        border: 1px solid #470101;
+        color: rgb(71, 1, 1) !important;
+    }
+</style>
+
+<div class="explorer-menu explorer-menu-dark" id = "hide_category">
+    <div class="explorer-inner">
+        <div class="container">
+            <!--Header-->
+            <div class="explorer-header">
+                <h3>{% trans 'Explore' %}</h3>
+            </div>
+            <!--List-->
+            <div class="explore-list">
+
+
+                {% get_current_language as lang %}
+				<a class="explore-item explore-item-dark" href = "/{{ lang }}/category/Python/1" >
+                    <img src="{% static 'assets/img/icons/explore/python.svg' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>بايثون</h4>
+                    {% else %}
+                    <h4>Python</h4>
+                    {% endif %}
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/AI/2" >
+                    <img src="{% static 'assets/img/icons/explore/It.svg' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>الذكاء الإصطناعي</h4>
+                    {% else %}
+                    <h4>Artificial intelligence</h4>
+                    {% endif %}
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/DataScience/3">
+                    <img src="{% static 'assets/img/icons/explore/math.svg' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>علوم البيانات</h4>
+                    {% else %}
+                    <h4>Data Science</h4>
+                    {% endif %}
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/Cybersecurity/4" >
+                    <img src="{% static 'assets/img/icons/explore/cybersec.png' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>الأمن السيبراني </h4>
+                    {% else %}
+                    <h4>Cyber security</h4>
+                    {% endif %}
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/Business/5"  >
+                    <img src="{% static 'assets/img/icons/explore/business.svg' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>ادارة اعمال</h4>
+                    {% else %}
+                    <h4>Business</h4>
+                    {% endif %}                
+                </a>
+
+                <a class="explore-item explore-item-dark"  href = "/{{ lang }}/category/Android/6"  >
+                    <img src="{% static 'assets/img/icons/explore/android.png' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>تطبيقات اندرويد</h4>
+                    {% else %}
+                    <h4>Android apps</h4>
+                    {% endif %}
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/IOS/7"  >
+                    <img src="{% static 'assets/img/icons/explore/ios.png' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>تطبيقات اي او اس</h4>
+                    {% else %}
+                    <h4>Ios apps</h4>
+                    {% endif %}
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/Hybrid/8" >
+                    <img src="{% static 'assets/img/icons/explore/hypered.png' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>تطبيقات هايبرد</h4>
+                    {% else %}
+                    <h4>Hybrid apps</h4>
+                    {% endif %}   
+                </a>
+
+                <a class="explore-item explore-item-dark"  href = "/{{ lang }}/category/Webdesign/9">
+                    <img src="{% static 'assets/img/icons/explore/software.svg' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>تصميم مواقع</h4>
+                    {% else %}
+                    <h4>Web design</h4>
+                    {% endif %}   
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/Webdevelopment/10" >
+                    <img src="{% static 'assets/img/icons/explore/coding.svg' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>برمجة مواقع</h4>
+                    {% else %}
+                    <h4>Web development</h4>
+                    {% endif %}   
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/Design/11" >
+                    <img src="{% static 'assets/img/icons/explore/design.png' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>تصميم</h4>
+                    {% else %}
+                    <h4>Design</h4>
+                    {% endif %}
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/Qiyas/12">
+                    <img src="{% static 'assets/img/icons/explore/qias.png' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>قياس</h4>
+                    {% else %}
+                    <h4>Qias</h4>
+                    {% endif %}      
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/Languages/13" >
+                    <img src="{% static 'assets/img/icons/explore/languages.svg' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>لغات</h4>
+                    {% else %}
+                    <h4>Languages</h4>
+                    {% endif %}
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/SelfDevelopment/14" >
+                    <img src="{% static 'assets/img/icons/explore/skills.svg' %}" alt="">
+                    {% if lang == "ar" %}
+                    <h4>تطوير الذات</h4>
+                    {% else %}
+                    <h4>Self development</h4>
+                    {% endif %}   
+                </a>
+
+                <a class="explore-item explore-item-dark" href = "/{{ lang }}/category/Others/15" >
+                    <img src="{% static 'assets/img/icons/explore/other.svg' %}" alt="">
+                    <h4>{% trans 'Others' %}</h4>
+                </a>
+
+			</div>
+        </div>
+    </div>
+</div>
+<!-- Categories -->
+
+<!-- Login Modal Start -->
+<div id="product-quickview" class="modal product-quickview is-xsmall has-light-bg">
+    <div class="modal-background quickview-background"></div>
+    <div class="modal-content">
+        <div class="card card-dark">
+            <div class="quickview-loader is-active">
+                <div class="loader is-loading"></div>
+            </div>
+            <div class="right">
+                <span class="close-modal close-modal-2">
+                    <i data-feather="x"></i>
+                </span>
+                <div class="header">
+                    <div class="product-info">
+                        <img class="Loginmodal-img Loginmodal-img-dark mobile_logo" src="{% static 'assets/img/favicon.png' %}" alt="">
+                        <h3 id="quickview-name">{% trans 'Login' %}</h3>
+                        <p style="margin-bottom: 10px;">{% trans 'Welcome Back' %}</p>
+                        <a href="{% url 'social:begin' 'google-oauth2' %}" class="button is-fullwidth socig socig-dark"
+                            style="margin-bottom: 5px;">{% trans 'Login via Gmail' %}
+                            &nbsp;<i class="mdi mdi-gmail"></i>
+                        </a>
+                        <a href="{% url 'social:begin' 'facebook' %}" class="button is-fullwidth soci soci-dark "
+                            style="">{% trans 'Login via Facebook' %}
+                            &nbsp;<i class="mdi mdi-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-align-center" style="text-align:center; color :  rgb(226, 134, 134);" id="login_div_error">
+                </div>
+                <div id="signup-panel-2" class="process-panel-wrap is-narrow">
+                    <div class="form-panel">
+                        <div class="search-filter" style="margin-bottom: 10px;">
+                            <div class="control has-icon">
+                                <input type="email" class="input input-lo is-fade" placeholder="{% trans 'Enter email' %}" id="login_email"
+                                    name="login_email" value="{{ request.session.email }}">
+                                <div class="form-icon">
+                                    <i class="fa fa-user" style="font-size: x-small;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-filter" style="margin-bottom: 10px;">
+                            <div class="control has-icon">
+                                <input type="password" class="input input-lo is-fade" placeholder="{% trans 'Enter your password' %}"
+                                    id="login_password" name="login_password" value="{{ request.session.password }}">
+                                <div class="form-icon">
+                                    <i class="fa fa-key" style="font-size: x-small;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <style>
+                            .no-background{
+                                background-color: transparent !important;
+                            }
+                        </style>
+                        <div class="field no-background">
+                            <div class="control">
+                                <p style="font-size: small;"><input id="remember" type="checkbox"> {% trans 'Remember me' %}</p>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button class="button primary-button raised is-fullwidth dark-button"
+                                    onclick="return login()">
+                                    <p>{% trans 'Login' %}</p>
+                                </button>
+                            </div>
+                        </div>
+                        <p> {% trans 'Already have an account ?' %} <a href="/signup">{% trans 'Sign up' %}</a></p>
+                        <div class="has-text-centered" style="margin-top: 10px;">
+                            {% if lang == "ar" %}
+                            <a class="modal-trigger" data-modal="albums-help-modal">هل نسيت كلمة المرور؟</a>
+                            {% else %}
+                            <a class="modal-trigger" data-modal="albums-help-modal">{% trans 'Forget Password' %}?</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login Modal End -->
+
+<!-- Forget Password -->
+<div id="albums-help-modal" class="modal albums-help-modal is-xsmall has-light-bg">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+
+        <div class="card card-dark">
+            <div class="card-heading">
+                <h3>{% trans 'Forget Password' %}</h3>
+                <div class="close-wrap">
+                   <span class="close-modal" onclick="closeModal()"  style="background: #d4dce0 !important;border: 1px solid #E4E4E4;color: #383c3f">&times;</span>
+               </div>
+            </div>
+            <div class="card-body">
+                <div class="content-block is-active" style="margin-left: -35px;text-align: center;align-items: center;">
+                    <img src="{% static 'assets/img/forget_email.png' %}" class="forget_email" alt="">
+                    <div class="help-text">
+                        <p style="margin-bottom: 10px;" class="mediabout mediabout-dark">{% trans 'Enter your Email address.' %}</p>
+                            <form action="/{{ lang }}/reset_password/" aa="{{lang}}" method="POST" class="text-center" id="reset_password_form">
+                            {% csrf_token %}
+                            {{form}}
+                            <input type="text" style="margin-bottom: 10px;" class="input is-fade" name="email" placeholder="{% trans 'Enter your Email' %}">
+                            <button type="submit" style="background-color:rgb(68, 127, 161);color: #fff;"
+                                class="button is-fullwidth dark-button" id="reset_password_btn">{% trans 'Send link' %}</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="content-block"></div>
+
+                <div class="slide-dots">
+                    <div class="column is-12"></div>
+                </div>
+            </div>
+            <div class="card-footer">
+                {% if lang == 'ar' %}
+                <p style="font-size: small;margin-top: 10px;font-weight: 400;">نسيت إيميلك؟ <a href="/{{lang}}/help">أحصل على المساعدة </a> </p>
+                {% else %}
+                <p style="font-size: small;margin-top: 10px;font-weight: 400;">{% trans 'Forget your email?' %} <a href="/{{lang}}/help">{% trans 'Get help!' %}</a> </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.marggin{
+    padding-top: 150px;
+}
+</style>
+<!-- reset Password -->
+<div id="reset-password-modal" class="modal albums-help-modal marggin is-xsmall has-light-bg">
+    <div class="modal-background"></div>
+    <div class="modal-content" style="">
+        <div class="card card-dark">
+            <div class="card-heading">
+                {% if lang == 'ar' %}
+                <h3 style="text-align: center">إعادة تعيين كلمة المرور</h3>
+                {% else %}
+                <h3 style="text-align: center">{% trans 'Reset Password' %}</h3>
+                {% endif %}
+                <!-- Close X button -->
+            </div>
+            <div class="card-body">
+                <div class="content-block is-active"
+                    style="margin-left: -35px;text-align: center;align-items: center;">
+                    <div class="help-text">
+                        {% if lang == "ar" %}
+                        <h3 style="margin-bottom: 20px; margin-top: 40px;" class="mediabout mediabout-dark">أدخل كلمة المرور الجديدة</h3>
+                        <form action="/ar/forgot_Changepassword/" method="POST" class="text-center">
+                            {% csrf_token %}
+                            {{form}}
+                        <input type="hidden" name="baseparam" id = "baseparamval" value="">
+                        <input type="password" required style="margin-bottom: 20px;" id="resetnewpassword" class="input is-fade" name="newpassword" placeholder="كلمة السر الجديدة">
+                        <input type="password" required style="margin-bottom: 30px;" id="resetconfirmpassword" class="input is-fade" name="confirmpassword" placeholder="اعادة كتابة كلمة السر">
+                        <button type="submit" id = "resetpasswordbutton" style="background-color:rgb(103, 174, 214);color: rgb(11, 37, 49);" class="button is-fullwidth dark-button">تغيير كلمة المرور</button>
+                    </form>
+                        {% else %}
+                        <h3 style="margin-bottom: 20px; margin-top: 40px;" class="mediabout mediabout-dark">{% trans 'Enter Password and Confirm Password.' %}</h3>
+                        <form action="/en/forgot_Changepassword/" method="POST" class="text-center">
+                            {% csrf_token %}
+                            {{form}}
+                        <input type="hidden" name="baseparam" id = "baseparamval" value="">
+                        <input type="password" required style="margin-bottom: 20px;" id="resetnewpassword" class="input is-fade" name="newpassword" placeholder="{% trans 'Password' %}">
+                        <input type="password" required style="margin-bottom: 30px;" id="resetconfirmpassword" class="input is-fade" name="confirmpassword" placeholder="{% trans 'Confirm Password' %}">
+                        <button type="submit" id = "resetpasswordbutton" style="background-color:rgb(103, 174, 214);color: rgb(11, 37, 49);" class="button is-fullwidth dark-button">{% trans 'Change password' %}</button>
+                    </form>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="slide-dots">
+                    <div class="column is-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Forget Password -->
+
+
+<script>
+    var url_string = window.location.href
+    var url = new URL(url_string);
+    var c = url.searchParams.get("param");
+
+    $("#baseparamval").val(c)
+    //http://127.0.0.1:8000/ar/forgot_password/?param=2a6dde22b15108c5a99531f4c339a073
+
+    $(function(){
+        $('#login_email,#login_password').keypress(function(e){
+            if(e.keyCode == 13){
+                login();
+            }
+        })
+
+        $("#reset_password_btn").click(function(e) {
+            e.preventDefault()
+            let email = $("input[name='email']").val()
+            if (email == "") {
+                alert("Please insert valid emaileeeeeeer.")
+                return
+            }
+            $("#reset_password_form").submit()
+        })     
+    });
+    
+    $("#resetpasswordbutton").click(function(){
+        if( ($("#resetnewpassword").val() != "") && ($("#resetconfirmpassword").val() != "")){
+            if($("#resetnewpassword").val() != $("#resetconfirmpassword").val()){
+                //password = $("#resetnewpassword").val()
+                //if (password.match(/[a-z]+/)==true && (password.match(/[A-Z]+/)==true && (password.match(/[0-9]+/)==true && (password.match(/[$@#&!]+/)==true ) {
+                //    console.log("souccess");
+                //}
+                alert("Password does not matched");
+                return false
+            }
+        }
+    });
+
+    function closeModal() {
+        $('#reset-password-modal').modal('hide')
+        history.back();
+    }
+    function single_cat(cat){
+        $('#category').val(cat);
+        var categ=$('#category').val();
+        var language=$('#language').val();
+
+        $.ajax({
+            method : "POST",
+            url : "/category/",
+            data : {
+                'categ':categ,
+            },
+            success : function(response){
+                $('#loadings').hide();
+            }
+        });
+    }
+
+
+</script>

@@ -1,0 +1,1298 @@
+{% extends "base.html" %} {% load static %} {% block head %} {% load l10n %} {% load i18n %}
+<style>
+  .schedule video {
+      width: 100% !important;
+  }
+
+
+.textt{
+  color: rgb(50, 53, 58) !important;
+}
+
+.textt-dark{
+  color: rgb(228, 229, 230) !important;
+}
+
+
+  .suceeess{
+    background-color: rgb(77, 202, 161) !important;
+    border: 1px solid rgb(60, 156, 97);
+    color: rgb(4, 44, 37);
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .dawrat{
+    background-color: rgb(255, 255, 255) !important;
+    padding-top: 20px;
+    border: 1px solid rgb(217, 219, 219);
+    border-radius: 5px;
+  }
+  .dawrat-dark{
+    background-color: #222831 !important;
+    border: 1px solid #161a20 !important;
+  }
+
+  .suceeess-dark{
+    background-color: rgb(167, 209, 196) !important;
+    border: 1px solid rgb(224, 248, 228) !important;
+  }
+
+  .plyr--video {
+      width: 100%;
+  }
+
+  .modal-content {
+      position: relative;
+      background-color: @modal-content-bg;
+      background-clip: padding-box;
+      border: 1px solid @modal-content-fallback-border-color;
+  / / old browsers fallback (ie8 etc) border: 1 px solid @modal-content-border-color;
+      border-radius: @border-radius-large;
+  . box-shadow(0 3 px 9 px rgba(0, 0, 0, .5));
+      outline: 0;
+  }
+
+  .btn + .btn {
+      margin-bottom: 0;
+      margin-left: 5px;
+  }
+
+  .btn-group .btn + .btn {
+      margin-left: -1px;
+  }
+
+  .btn-block + .btn-block {
+      margin-left: 0;
+  }
+
+  @media (min-width: @screen-sm-min) {
+
+      .modal-dialog {
+          width: @modal-md;
+          margin: 30px auto;
+      }
+
+      .modal-content {
+      . box-shadow(0 5 px 15 px rgba(0, 0, 0, .5));
+      }
+
+
+      .modal-sm {
+          width: @modal-sm;
+      }
+  }
+
+  @media (min-width: @screen-md-min) {
+      .modal-lg {
+          width: @modal-lg;
+      }
+  }
+
+  textarea {
+      text-align: left;
+  }
+
+  .checked {
+      color: #f7ff00 !important;
+  }
+
+  .loading::after {
+      display: block;
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform: translateX(-100%);
+      background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(255, 255, 255, 0.2)), to(transparent));
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      /* Adding animation */
+      animation: loading 1s infinite;
+  }
+
+  @keyframes loading {
+      100% {
+          transform: translateX(100%);
+      }
+  }
+
+  .dancin-bc {
+      background: white !important;
+      height: 100%;
+      width: 100%;
+
+  }
+
+  .dancing-lao {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+  }
+
+  .dancing-lao:after {
+      display: block;
+      width: 150px;
+      height: 2px;
+      margin-top: 10px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 10px;
+      background: rgb(43, 148, 209);
+      content: "";
+      -webkit-animation: 1s border infinite;
+      animation: 1s border infinite;
+      -webkit-animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+      animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+  }
+
+  .dancing-lao .left-dots {
+      position: absolute;
+      bottom: 20%;
+      left: 20%;
+  }
+
+  .dancing-lao .right-dots {
+      position: absolute;
+      bottom: 20%;
+      right: 20%;
+      -webkit-transform: scale(-1, 1);
+      transform: scale(-1, 1);
+  }
+
+  .dancing-lao .dot {
+      display: inline-block;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgb(43, 148, 209);
+      opacity: 0;
+  }
+
+  .dancing-lao .dot-1 {
+      -webkit-animation: 1s dot infinite;
+      animation: 1s dot infinite;
+      -webkit-animation-delay: .5s;
+      animation-delay: .5s;
+  }
+
+  .dancing-lao .dot-2 {
+      -webkit-animation: 1s dot-2 infinite;
+      animation: 1s dot-2 infinite;
+      -webkit-animation-delay: .5s;
+      animation-delay: .5s;
+  }
+
+  .dancing-lao .circle-dot {
+      display: inline-block;
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 2px solid rgb(43, 148, 209);
+      -webkit-animation: 1s cirle-dot infinite;
+      animation: 1s cirle-dot infinite;
+      -webkit-animation-delay: .5s;
+      animation-delay: .5s;
+      opacity: 0;
+  }
+
+  .dancing-lao img {
+      display: block;
+      margin: auto;
+      width: 90px;
+      height: 80px;
+      margin-bottom: 20px;
+      -webkit-animation: 1s dance infinite;
+      animation: 1s dance infinite;
+      -webkit-animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+      animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+      -webkit-animation-direction: alternate;
+      animation-direction: alternate;
+  }
+
+  @-webkit-keyframes dance {
+      0% {
+          -webkit-transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+          transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+      }
+      50% {
+          -webkit-transform: translate3d(0, 8px, 0) scaleY(0.85);
+          transform: translate3d(0, 8px, 0) scaleY(0.85);
+      }
+      100% {
+          -webkit-transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+          transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+      }
+  }
+
+  @keyframes dance {
+      0% {
+          -webkit-transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+          transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+      }
+      50% {
+          -webkit-transform: translate3d(0, 8px, 0) scaleY(0.85);
+          transform: translate3d(0, 8px, 0) scaleY(0.85);
+      }
+      100% {
+          -webkit-transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+          transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+      }
+  }
+
+  @-webkit-keyframes border {
+      0% {
+          -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+          opacity: 0.5;
+      }
+      50% {
+          -webkit-transform: scaleX(0.6);
+          transform: scaleX(0.6);
+          opacity: 1;
+      }
+      100% {
+          -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+          opacity: 0.5;
+      }
+  }
+
+  @keyframes border {
+      0% {
+          -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+          opacity: 0.5;
+      }
+      50% {
+          -webkit-transform: scaleX(0.6);
+          transform: scaleX(0.6);
+          opacity: 1;
+      }
+      100% {
+          -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+          opacity: 0.5;
+      }
+  }
+
+  @-webkit-keyframes dot {
+      0% {
+          opacity: 0;
+      }
+      1% {
+          -webkit-transform: scale(0.2);
+          transform: scale(0.2);
+      }
+      50% {
+          -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+          transform: scale(1) translate3d(-50px, -70px, 0);
+          opacity: .8;
+      }
+      100% {
+          -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+          transform: scale(1) translate3d(-50px, -70px, 0);
+          opacity: 0;
+      }
+  }
+
+  @keyframes dot {
+      0% {
+          opacity: 0;
+      }
+      1% {
+          -webkit-transform: scale(0.2);
+          transform: scale(0.2);
+      }
+      50% {
+          -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+          transform: scale(1) translate3d(-50px, -70px, 0);
+          opacity: .8;
+      }
+      100% {
+          -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+          transform: scale(1) translate3d(-50px, -70px, 0);
+          opacity: 0;
+      }
+  }
+
+  @-webkit-keyframes dot-2 {
+      0% {
+          opacity: 0;
+      }
+      1% {
+          -webkit-transform: scale(0.2);
+          transform: scale(0.2);
+      }
+      70% {
+          -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+          transform: scale(0.7) translate3d(-50px, -50px, 0);
+          opacity: .8;
+      }
+      100% {
+          -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+          transform: scale(0.7) translate3d(-50px, -50px, 0);
+          opacity: 0;
+      }
+  }
+
+  @keyframes dot-2 {
+      0% {
+          opacity: 0;
+      }
+      1% {
+          -webkit-transform: scale(0.2);
+          transform: scale(0.2);
+      }
+      70% {
+          -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+          transform: scale(0.7) translate3d(-50px, -50px, 0);
+          opacity: .8;
+      }
+      100% {
+          -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+          transform: scale(0.7) translate3d(-50px, -50px, 0);
+          opacity: 0;
+      }
+  }
+
+  @-webkit-keyframes cirle-dot {
+      0% {
+          opacity: 0;
+      }
+      1% {
+          -webkit-transform: scale(0.2);
+          transform: scale(0.2);
+      }
+      80% {
+          -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+          transform: scale(1) translate3d(-80px, -40px, 0);
+          opacity: .8;
+      }
+      100% {
+          -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+          transform: scale(1) translate3d(-80px, -40px, 0);
+          opacity: 0;
+      }
+  }
+
+  @keyframes cirle-dot {
+      0% {
+          opacity: 0;
+      }
+      1% {
+          -webkit-transform: scale(0.2);
+          transform: scale(0.2);
+      }
+      80% {
+          -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+          transform: scale(1) translate3d(-80px, -40px, 0);
+          opacity: .8;
+      }
+      100% {
+          -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+          transform: scale(1) translate3d(-80px, -40px, 0);
+          opacity: 0;
+      }
+  }
+</style>
+
+  {% get_current_language as lang %}
+    {% if lang == "ar" %}
+    <style>
+        .image-owner{
+            direction: ltr;
+            float: left;
+        }
+        .full{
+            direction: ltr;
+            float: left;
+        }
+        .rating{
+            direction: ltr;
+            float: left;
+        }
+        .name{
+            direction: ltr;
+            float: left;
+        }
+        .accordion__menu{
+            background-color: none !important;
+
+        }
+        .accordion__menu-dark{
+            background-color: rgb(241, 241, 241) !important;
+        }
+    </style>
+    {% endif %}
+
+    <style>
+        .in-blk {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .goldstardiv {
+            color: gold;
+            position: relative;
+        }
+
+        .nocourseavailable {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bolder;
+        }
+
+        /****** Style Star Rating Widget *****/
+        @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+        .rating {
+            border: none;
+            float: left;
+        }
+
+        .rating > input {
+            display: none;
+        }
+
+        .rating > label:before {
+            margin: 5px;
+            font-size: 1.25em;
+            font-family: FontAwesome;
+            display: inline-block;
+            content: "\f005";
+        }
+
+        .rating > .half:before {
+            content: "\f089";
+            position: absolute;
+        }
+
+        .rating > label {
+            color: #ddd;
+            float: right;
+        }
+
+        /***** CSS Magic to Highlight Stars on Hover *****/
+        .rating > input:checked ~ label
+        {
+            color: #FFD700;
+        }
+
+        .is-comboe{
+            background-color: #fff;
+        }
+
+        .is-comboe-dark{
+            background: #adadad !important; 
+            border: 1px solid #707070 !important;
+            color: #616B75 ;
+        }
+
+        .prcgr{
+            color: rgb(25, 139, 82) !important;
+        }
+
+        .prcgr-dark{
+            color: rgb(177, 241, 209) !important;
+        }
+
+        .prcg{
+            color: rgb(204, 29, 29) !important;
+        }
+
+        .prcg-dark{
+            color: rgb(214, 169, 169) !important;
+        }
+    </style>
+{% endblock %} {% block content %}
+
+
+
+
+<div class="container" style="padding-top: 90px;">
+  <div class="shop-wrappr">
+    <div class="suceeess suceeess-dark">
+      {% get_current_language as lang %}
+      {% if lang == 'ar' %}
+        <b style="">شكرا لانضمامك, حان وقت البدء للاستفادة وزيادة قدراتك</b>
+      {% else %}
+        <b style="">Thanks for your enrollment, its time for study and increase your learning career.</b>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+
+
+  <div class="cart-content">
+    <div class="columns">
+      {% get_current_language as lang %}
+      {% if lang == 'en' %}
+        <div class="column is-6" style="padding-top: 40px;">
+
+          <div class="categories-header">
+              <h2>My courses</h2>
+          </div>
+
+          <div class="dawrat dawrat-dark">
+            
+
+              <span style="font-size: 20px !important; margin-left: 20px;" class="mediabout mediabout-dark">{{ course.name }}</span>
+              <span class="mediabout mediabout-dark" style="float:right; margin-right: 20px;">{{ course.category.name }}</span>
+           
+            <br>
+
+              <a class="button primary-button is-solid raised story modal-trigger login-button-is-dark" href="javascript:void(0)" style="margin: 10px;" onclick="onStartLearn({{ course.id }})">Start learn
+              </a>
+      
+            </div>
+        </div>
+        <div class="column is-6"></div>
+      {% else %}
+      <div class="column is-6" style="padding-top: 40px;">
+
+        <div class="categories-header">
+            <h2>دوراتي</h2>
+        </div>
+
+        <div class="dawrat dawrat-dark">
+          
+
+            <span style="font-size: 20px !important; margin-right: 20px;" class="mediabout mediabout-dark">{{ course.name }}</span>
+            <span class="mediabout mediabout-dark" style="float:left; margin-left: 20px;">{{ course.category.name }}</span>
+     
+          <br>
+
+            <a class="button primary-button is-solid raised story modal-trigger login-button-is-dark" href="javascript:void(0)" style="margin: 10px;" onclick="onStartLearn({{ course.id }})">ابدأ التعلم
+            </a>
+    
+          </div>
+      </div>
+      <div class="column is-6"></div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Filters and courses -->
+<div id="shop-page" class="shop-wrapper">
+  {% if similar_courses|length > 0 %}
+  <section>
+    <div class="store-sections">
+      <div class="container">
+        <div class="categories-header">
+          {% get_current_language as lang %}
+          {% if lang == 'ar' %}
+            <h2>دورات مماثلة</h2>
+          {% else %}
+            <h2>Similar courses</h2>
+          {% endif %}
+        </div>
+        <div
+          id="products-tab"
+          class="store-tab-pane is-active sortingdivparent"
+          id="demo"
+        >
+          <div class="columns is-multiline sortingdiv allcoursearea">
+            {% for course in similar_courses %}
+            <div
+              class="
+                column
+                is-one-fifth-fullhd
+                is-one-quarter-widescreen
+                is-one-third-desktop
+                is-half-tablet
+                is-full-mobile
+                coursecard
+              "
+              data-cat-id="{{ course.scat_id }}"
+              data-rating="{{ course.rating }}"
+              data-ts="{{ course.stuCnt }}"
+              data-cd="{{ course.created_at.timestamp }}"
+            >
+              <div
+                class="product-card"
+                data-name="Spring Red Dress"
+                data-price="44.00"
+                data-colors="true"
+                data-variants="true"
+                data-path="/static/assets/img/products/1"
+              >
+                <a href="/course/{{ course.link }}" class="product-image">
+                  <div class="image-grid-wrap">
+                    <div class="image-grid">
+                      <div class="image-row">
+                        <div
+                          class="flex-1 has-background-image"
+                          data-background="{% static course.cover_img %}"
+                          data-demo-background="/static/assets/img/courses/pc.jpg"
+                        >
+                          <div class="overlay"></div>
+                          <div class="image-owner">
+                            <div class="name" style="display: flex; align-items: center;" style="font-size: 10px !important;">
+                                <form class="rating" data-rating="{{ course.rating }}" data-course="{{ course.id }}">
+
+                                    <input type="radio" id="star10-{{ course.id }}" name="rating" value="5" disabled />
+                                    <label class="full" for="star10-{{ course.id }}" title="Awesome - 5 stars"></label>
+
+                                    <input type="radio" id="star9-{{ course.id }}" name="rating" value="4 and a half" disabled/>
+                                    <label class="half" for="star9-{{ course.id }}" title="Pretty good - 4.5 stars"></label>
+
+                                    <input type="radio" id="star8-{{ course.id }}" name="rating" value="4" disabled/>
+                                    <label class="full" for="star8-{{ course.id }}" title="Pretty good - 4 stars"></label>
+
+                                    <input type="radio" id="star7-{{ course.id }}" name="rating" value="3 and a half" disabled/>
+                                    <label class="half" for="star7-{{ course.id }}" title="Meh - 3.5 stars"></label>
+
+                                    <input type="radio" id="star6-{{ course.id }}" name="rating" value="3" disabled/>
+                                    <label class="full" for="star6-{{ course.id }}" title="Meh - 3 stars"></label>
+
+                                    <input type="radio" id="star5-{{ course.id }}" name="rating" value="2 and a half" disabled/>
+                                    <label class="half" for="star5-{{ course.id }}" title="Kinda bad - 2.5 stars"></label>
+
+                                    <input type="radio" id="star4-{{ course.id }}" name="rating" value="2" disabled/>
+                                    <label class="full" for="star4-{{ course.id }}" title="Kinda bad - 2 stars"></label>
+
+                                    <input type="radio" id="star3-{{ course.id }}" name="rating" value="1 and a half" disabled/>
+                                    <label class="half" for="star3-{{ course.id }}" title="Meh - 1.5 stars"></label>
+
+                                    <input type="radio" id="star2-{{ course.id }}" name="rating" value="1" disabled/>
+                                    <label class="full" for="star2-{{ course.id }}" title="Sucks big time - 1 star"></label>
+
+                                    <input type="radio" id="star1-{{ course.id }}" name="rating" value="half" disabled/>
+                                    <label class="half" for="star1-{{ course.id }}" title="Sucks big time - 0.5 stars"></label>
+
+                                </form>
+                                <span style="font-size: small; color: rgb(255, 238, 80); cursor: default;">{{ course.rating|unlocalize }} &nbsp; ( {{ course.count }} )</span>
+                            </div>
+                          </div>
+
+                          {% if course.id in alreadyinFav %}
+                            <div
+                              id="invite-pop"
+                              class="photo-like pop-button has-tooltip"
+                              data-id="{{ course.id }}"
+                              data-title="Relationship"
+                            >
+                              <a class="inner">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  aria-hidden="true"
+                                  focusable="false"
+                                  width="1em"
+                                  height="1em"
+                                  style="
+                                    -ms-transform: rotate(360deg);
+                                    -webkit-transform: rotate(360deg);
+                                    transform: rotate(360deg);
+                                  "
+                                  preserveAspectRatio="xMidYMid meet"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <g
+                                    fill="red"
+                                    stroke="red"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  >
+                                    <path
+                                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78l1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                                    />
+                                  </g>
+                                </svg>
+                              </a>
+                            </div>
+                          {% else %}
+                            <div class="photo-like pop-button has-tooltip favbutton" id="invite-pop" data-id="{{ course.id }}">
+                                <a class="inner"
+                                   data-title="Relationship"
+                                   data-type="addFav" data-id="">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         aria-hidden="true" focusable="false"
+                                         width="1em"
+                                         height="1em"
+                                         style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
+                                         preserveAspectRatio="xMidYMid meet"
+                                         viewBox="0 0 24 24">
+                                        <g fill="none" stroke="#626262"
+                                           stroke-width="2"
+                                           stroke-linecap="round"
+                                           stroke-linejoin="round">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78l1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                        </g>
+                                    </svg>
+                                </a>
+                            </div>
+                          {% endif %}
+                          {% if course.price > 0 %}
+                            {% if course.id in alreadyinCart %}
+                                <a id="follow-pop"
+                                class="photo-time pop-button has-tooltip is-shifted is-active"
+                                data-title="Relationship" data-id="{{ course.id }}">
+                                    <i class="fa fa-shopping-cart"
+                                    style=";font-size: 22px;color: skyblue"></i>
+                                </a>
+                            {% else %}
+                                <a id="follow-pop"
+                                class="photo-time pop-button has-tooltip"
+                                data-title="Relationship" data-id="{{ course.id }}">
+                                    <i class="fa fa-shopping-cart"
+                                    style="font-size: 22px;color: #fff;"></i>
+                                </a>
+                            {% endif %}
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                <div class="product-info">
+                  <h3>
+                    <a
+                      href="#"
+                      style="
+                        display: block;
+                        width: 230px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                      "
+                      >{{ course.name }}</a
+                    >
+                  </h3>
+                  <div
+                    style="
+                      line-height: 1.5em;
+                      height: 3em;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    "
+                  class="textt textt-dark">
+                    {{ course.description | safe | truncatechars:30 }}
+                  </div>
+                  <i class="fa fa-users"></i>
+                  <span style="font-size: small"
+                    >{{ course.stuCnt }} &nbsp;</span
+                  >
+                  <i class="fa fa-video"></i>
+                  <span style="font-size: small"
+                    >{{ course.videoCnt }} Videos</span
+                  >
+                  <div class="product-actions">
+                    <div class="left">
+                      {% if course.price > 0 %}
+                          {% if course.price != course.discount_price %}
+                          <b style="color:red;"><del style="font-weight: bold">${{ course.price|unlocalize }}</del>   <b style="color: green">${{ course.discount_price|unlocalize }}</b></b>
+                          {% else %}
+                          <b style="color:red;">${{ course.price|unlocalize }}</b>
+                          {% endif %}
+                      {% else %}
+                          <b style="color:green "> Free </b>
+                      {% endif %}
+                    </div>
+                    <div class="right">
+                      <a
+                        class="
+                          button
+                          primary-button
+                          is-solid
+                          raised
+                          story
+                          modal-trigger
+                        "
+                        data-modal="videos-modal"
+                        onclick="showVideoModal({{ course.id }})"
+                      >
+                        <i class="fa fa-play"></i>
+                        {% trans 'Demo' %}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <center>
+            {% if similar_courses.has_other_pages %}
+            <ul class="pagination">
+              {% if similar_courses.has_previous %}
+              <li>
+                <a onclick="page_prev()">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+              </li>
+              {% else %}
+              <li class="disabled">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+              </li>
+              {% endif %} {% for i in similar_courses.paginator.page_range %} 
+              {% if favList.number == i %}
+              <li
+                class="active"
+                style="background: #0d79df; color: white; cursor: pointer"
+                onclick="page_set({{ i }})"
+              >
+                <span>{{ i }}</span>
+              </li>
+              {% else %}
+              <li><a onclick="page_set({{ i }})">{{ i }}</a></li>
+              {% endif %} {% endfor %} {% if similar_courses.has_next %}
+              <li>
+                <a onclick="page_next()">
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+              </li>
+              {% else %}
+              <li class="disabled">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </li>
+              {% endif %}
+            </ul>
+            {% endif %}
+          </center>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% else %}
+  <section>
+    <div class="store-sections">
+      <div class="container">
+        <div class="categories-header">
+          {% get_current_language as lang %}
+          {% if lang == 'ar' %}
+            <h2>دورات مماثلة</h2>
+          {% else %}
+            <h2>Similar courses</h2>
+          {% endif %}
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div
+    class="store-sections-6"
+    style="
+      display: flex;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+    "
+  >
+    <img
+      src="{% static 'assets/img/no-cart.svg' %}"
+      style="width: 350px"
+      alt=""
+    />
+    {% get_current_language as lang %}
+    {% if lang == 'ar' %}
+      <h2 style="margin-top: -40px; color: gray">
+        للأسف ، لا توجد دورات في عربة التسوق الخاصة بك
+      </h2>
+      <input
+        style="margin-bottom: 15px"
+        id="tipue_drop_input"
+        class="input c-input"
+        type="text"
+        placeholder="Search"
+        required
+      />
+      <a`
+        href="index.html"
+        class="button"
+        style="max-width: 230px !important; margin-bottom: 20px"
+        >بحث &nbsp;<span class="fa fa-search"></span
+      ></a>
+    {% else %}
+      <h2 style="margin-top: -40px; color: gray">
+        unfortunately, there are no courses yet in your cart
+      </h2>
+      <input
+        style="margin-bottom: 15px"
+        id="tipue_drop_input"
+        class="input c-input"
+        type="text"
+        placeholder="Search"
+        required
+      />
+      <a
+        href="index.html"
+        class="button"
+        style="max-width: 230px !important; margin-bottom: 20px"
+        >Search &nbsp;<span class="fa fa-search"></span
+      ></a>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div id="videos-modal" class="modal videos-modal is-large has-light-bg">
+    <div class="modal-background"></div>
+    <div class="modal-content" style="height: auto !important">
+      <div class="card">
+        <div class="card-heading">
+          <div class="user-meta">
+            <img id="modal-img" src="/static/assets/img/man.jpg" />
+          </div>
+          <span class="user-meta-span" id="modal-user-name"
+            >{{ course.user.first_name }}{{ course.user.last_name }}
+          </span>
+          <span class="user-meta-span" id="modal-course-name"
+            >&nbsp; &nbsp; | {{ course.name }}&nbsp; &nbsp;</span
+          >
+          <a
+            type="button"
+            class="button"
+            style="background-color: rgb(202, 0, 51); color: #fff"
+            >Add to Fav &nbsp;<i class="fa fa-heart"></i
+          ></a>
+          <!-- Close X button -->
+          <div class="close-wrap">
+            <span class="close-modal">
+              <i data-feather="x"></i>
+            </span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="inner">
+            <div class="app-video left-section">
+              <video
+                poster="/static/assets/img/setting.jpg"
+                style=""
+                id="player"
+                playsinline
+                controls
+              >
+                <source
+                  id="modal-video-src"
+                  src="/static/assets/img/vid/html.mp4"
+                  type="video/webm"
+                />
+
+                <!-- Captions are optional -->
+                <track
+                  kind="captions"
+                  label="English captions"
+                  src="/path/to/captions.vtt"
+                  srclang="en"
+                  default
+                />
+              </video>
+            </div>
+            <div class="right-section">
+              <div class="inner-content">
+                <div class="live-stats">
+                  <div class="social-count-2">
+                    <div class="likes-count">
+                      <i class="fa fa-users"></i>
+                      <span id="modal-users">140,440</span>
+                    </div>
+                    <div class="shares-count">
+                      <i class="fa fa-star" style="color: rgb(212, 173, 0)"></i>
+                      <span id="modal-rating">4.8</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tabs-wrapper">
+                <div class="tabs is-fullwidth">
+                  <ul>
+                    <li class="is-active">
+                      <a>Demo Videos</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-content">
+                  <div
+                    class="
+                      accordion
+                      js-accordion
+                      accordion--boxed
+                      list-group-flush
+                    "
+                    id="parent"
+                  >
+                    <div class="accordion__item">
+                      <a
+                        href="#"
+                        class="accordion__toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#course-toc-{{ ele.id }}"
+                        data-parent="#parent"
+                      >
+                        <span class="flex">Section 1</span>
+                        <span class="accordion__toggle-icon material-icons"
+                          >keyboard_arrow_down</span
+                        >
+                      </a>
+                      <div
+                        class="accordion__menu collapse"
+                        id="course-toc-{{ ele.id }}"
+                      >
+                        <div
+                          class="accordion__menu-link"
+                          style="cursor: pointer"
+                        >
+                          <i
+                            class="material-icons icon-16pt tick{{ i.id }}"
+                            onclick="checkThis(this)"
+                            data-sr_no="{{ i.sr_no }}"
+                            >check_circle</i
+                          >
+                          &nbsp
+                          <div
+                            data-id="{{ i.id }}"
+                            data-srno="{{ i.sr_no }}"
+                            data-url="{{ i.url }}"
+                            onclick="playmyvideo(this)"
+                          >
+                            {{ i.video_name }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% get_current_language as lang %}
+  <script>
+    let cur_page = "{{ page }}";
+
+    function page_set(page) {
+      $("#page").val(page);
+      $("#fav_form").submit();
+    }
+
+    function page_prev() {
+      page = cur_page * 1 - 1;
+      $("#page").val(page);
+      $("#fav_form").submit();
+    }
+
+    function page_next() {
+      page = cur_page * 1 + 1;
+      $("#page").val(page);
+      $("#fav_form").submit();
+    }
+
+    function setType(type) {
+      $("#type").val(type);
+      $("#fav_form").submit();
+    }
+
+    function category() {
+      var category_id = $("#category_id").val();
+      var category_id_2 = $("#category_id_2").val();
+      $("#loadings").show();
+      if (!category_id) {
+        category_id = 0;
+      }
+      if (!category_id_2) {
+        category_id_2 = 0;
+      }
+      if (category_id_2 == 1) {
+        // Most rated
+        $(".paidcoursearea .coursecard")
+          .sort(function (a, b) {
+            return $(b).data("rating") - $(a).data("rating");
+          })
+          .appendTo(".paidcoursearea");
+        $(".freecoursearea .coursecard")
+          .sort(function (a, b) {
+            return $(b).data("rating") - $(a).data("rating");
+          })
+          .appendTo(".freecoursearea");
+        $(".allcoursearea .coursecard")
+          .sort(function (a, b) {
+            return $(b).data("rating") - $(a).data("rating");
+          })
+          .appendTo(".allcoursearea");
+      }
+
+      if (category_id_2 == 2) {
+        // Most students
+        $(".paidcoursearea .coursecard")
+          .sort(function (a, b) {
+            return $(b).data("ts") - $(a).data("ts");
+          })
+          .appendTo(".paidcoursearea");
+        $(".freecoursearea .coursecard")
+          .sort(function (a, b) {
+            return $(b).data("ts") - $(a).data("ts");
+          })
+          .appendTo(".freecoursearea");
+        $(".allcoursearea .coursecard")
+          .sort(function (a, b) {
+            return $(b).data("ts") - $(a).data("ts");
+          })
+          .appendTo(".allcoursearea");
+      }
+
+      if (category_id_2 == 3) {
+        // Newest
+
+        $(".paidcoursearea .coursecard")
+          .sort(function (a, b) {
+            return $(b).data("cd") - $(a).data("cd");
+          })
+          .appendTo(".paidcoursearea");
+
+        $(".freecoursearea .coursecard")
+          .sort(function (a, b) {
+            return $(b).data("cd") - $(a).data("cd");
+          })
+          .appendTo(".freecoursearea");
+
+        $(".allcoursearea .coursecard")
+          .sort(function (a, b) {
+            return $(b).data("cd") - $(a).data("cd");
+          })
+          .appendTo(".allcoursearea");
+      }
+
+      if (category_id == 0) {
+        $(".coursecard").show();
+      } else {
+        $(".coursecard").hide();
+        $(".coursecard[data-cat-id=" + category_id + "]").show();
+        $("#loadings").hide();
+        if ($(".coursecard[data-cat-id=" + category_id + "]").length == 0) {
+          swal({
+            title: "Sorry, there are no course in this category ",
+            icon: "warning",
+            button: "Ok",
+            closeOnClickOutside: false,
+          });
+        }
+      }
+    }
+
+    function showVideoModal(id) {
+      let url = `/get_course_detail_by_id/`;
+      let form_data = new FormData();
+      form_data.append("id", id);
+      $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        async: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+      }).then((response) => {
+        $("#modal-user-name").html(response.user_name);
+        course = JSON.parse(response.course);
+        sections = JSON.parse(response.sections);
+        console.log("test::", course);
+        console.log("sections::", sections);
+        $("#modal-course-name").html(course[0].fields.name);
+        $("#modal-users").html(response.user_count);
+        $("#modal-rating").html(response.rating);
+        html = ``;
+        key = 0;
+        sections.forEach((item) => {
+          html += `<div class="accordion__item">
+                                <a href="#" class="accordion__toggle collapsed" style="display:flex; justify-content: space-between;" data-toggle="collapse"
+                                   data-target="#course-toc-${key}" data-parent="#parent">
+                                    <span class="flex">${item.name}</span>
+                                    <span class="accordion__toggle-icon material-icons">keyboard_arrow_down</span>
+                                </a>`;
+          item.video_list.forEach((ele) => {
+            html += `<div class="accordion__menu collapse" id="course-toc-${key}">
+                                        <div class="accordion__menu-link" style="cursor: pointer;">
+                                            <i class="material-icons icon-16pt tick${key}"
+                                               onclick="checkThis(this)">check_circle</i> &nbsp
+                                            <div data-url="${ele.url}"
+                                                 onclick="playmyvideo(this)">${ele.name}</div>
+                                        </div>
+                                    </div>`;
+          });
+          html += `</div>`;
+          key++;
+        });
+        $("#parent").html(html);
+      });
+    }
+
+    function playmyvideo(obj) {
+      url = $(obj).data("url");
+      $("#modal-video-src").attr("src", "../../../../static" + url);
+      $(".app-video video")[0].load();
+    }
+
+    function onStartLearn(course_id) {
+      $.ajax({
+            method: "POST",
+            url: "/video_check/",
+            data: {
+                'id': course_id,
+            },
+            success: function (response) {
+                if (response['msg'] == "success") {
+                    course_name = response['course_name']
+                    if(response['continous'] == 1){
+                        quiz_id = response['quiz_id']
+                        question_no = response['question_no']
+                        window.location = `/quiz/${course_name}/${quiz_id}/?question=${question_no}`
+                    } else{
+                        window.location = `/{{ lang }}/video/${course_name}/` + response['id'];
+                    }
+
+                } else if (response['msg'] == "error") {
+                    swal("Course Video Not Found!", {
+                        icon: "info",
+                        button: "Ok",
+                        closeOnClickOutside: false,
+                    }).then(function () {
+                    });
+                }
+            }
+        });
+    }
+
+    $(document).ready(function () {
+
+      $(".rating").each(function() {
+          rating = $(this).data('rating')
+          if (typeof rating === "string") {
+              rating = rating.replace(",",".")
+              rating = parseFloat(rating)
+          }
+          rating = rating * 1.0
+          course = $(this).data('course')
+          num = Math.floor(rating / 0.5)
+          $(`#star${num}-${course}`).attr('checked', true)
+      })
+    });
+  </script>
+
+  {% endblock %} {% block script %}
+  <!-- App JS -->
+  <script src="{% static 'assets/js/sideb.js' %}"></script>
+  <!-- Page and UI related js -->
+  <script src="{% static 'assets/js/videos.js' %}"></script>
+  <script src="{% static 'assets/js/settings.js' %}"></script>
+  {% endblock %}
+</div>

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+
+
+    <style>
+
+       .summary-ca h2 {
+           font-size: 1.4rem;
+           font-weight: bold;
+       }
+       .summary-ca h3 {
+           font-size: 1.2rem;
+       }
+    </style>
+
+
+    <div class="products-navigation" style="display: none;">
+    </div>
+
+
+    <div class="container">
+        <div class="signup-wrapper signup-wrapper-pad">
+
+
+            <div class="card">
+
+                <h3 style="" class="card-signup-h3">Account Activated</h3>
+
+                <div style="max-width: 540px; margin:0 auto; padding: 20px 0;">
+                    <div style="width: 100%;border:1px solid #e8e8e8;border-radius: 8px;padding:30px;">
+                        <div style="margin: 12px auto;max-width: 370px;text-align: center;">
+                            <h3>Congratulations, {{ user.first_name }}!</h3>
+                            <p>Your account has been successfully activated.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %} {% block script %}
+
+<!-- Page and UI related js -->
+
+{% endblock %}

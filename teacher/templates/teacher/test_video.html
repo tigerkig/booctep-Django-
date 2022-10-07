@@ -1,0 +1,213 @@
+{% extends "teacher/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% get_current_language as lang %}
+    {% if lang == "ar" %}
+    فيديو تجريبي
+    {% else %}
+        Test Video
+    {% endif %} 
+{% endblock %}
+
+{% block head %}
+    {% load static %}
+    <!-- Quill Theme -->
+    <link type="text/css" href="{% static 'teacher/assets/css/quill.css' %}" rel="stylesheet">
+
+    <!-- Select2 -->
+    <link type="text/css" href="{% static 'teacher/assets/css/select2.css' %}" rel="stylesheet">
+
+    <link type="text/css" href="{% static 'teacher/assets/vendor/select2/select2.min.css' %}" rel="stylesheet">
+
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="{% static 'teacher/assets/css/sweetalert.css' %}">
+{% endblock %}
+
+{% block headercontent %}
+    {% get_current_language as lang %}
+    {% if lang == "ar" %}
+        {% with title="أضف فيديو تجريبي" %}
+            {% include "./layout/header.html" %}
+        {% endwith %}
+    {% else %}
+        {% with title="Add Test Video" %}
+            {% include "./layout/header.html" %}
+        {% endwith %}
+    {% endif %}    
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="progress rounded-0" style="height: 4px;">
+        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%;" aria-valuenow="37" aria-valuemin="0"
+             aria-valuemax="100"></div>
+    </div>
+    <!-- // END Header -->
+    {% get_current_language as lang %}
+    {% if lang == 'en' %}
+        <div class="page-section border-bottom-2">
+            <div class=" page__container" style="height: 100vh !important;">
+                <div class="row">
+                    <div class="col-md-8" id="group_section">
+                        <div id="group_section1">
+                        </div>
+                    </div>
+                </div>
+                <a class="custom-file custom-file-naked d-flex">
+                    <input type="file" class="custom-file-input" id="customFile" onchange="addVideo(this)">
+                    <label class="custom-file-label"
+                        style="color: inherit;margin-top: 0px;margin-left: 10%; margin-right: 83%;"
+                        for="customFile">
+                        <b> Add new video</b>
+                        <i class="material-icons" style="font-size: x-large !important;">add</i>
+                    </label>
+                </a>
+                <div style="margin-top: 60px;">
+                    <a href="#" class="btn btn-primary mr-4 ml-10" id="submittestvideobtn">Submit</a>
+                    <a href="#" class="btn btn-accent" onclick="cancel()">Cancel</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+    <div class="page-section border-bottom-2">
+        <div class=" page__container" style="height: 100vh !important;">
+            <div class="row">
+                <div class="col-md-8" id="group_section">
+                    <div id="group_section1">
+                    </div>
+                </div>
+            </div>
+            <a class="custom-file custom-file-naked d-flex">
+                <input type="file" class="custom-file-input" id="customFile" onchange="addVideo(this)">
+                <label class="custom-file-label"
+                    style="color: inherit;margin-top: 0px;margin-left: 83%; margin-right: 10%;"
+                    for="customFile">
+                    <b> إضافة فيديو جديد</b>
+                    <i class="material-icons" style="font-size: x-large !important;">add</i>
+                </label>
+            </a>
+            <div style="margin-top: 60px;">
+                <a href="javascript:;void(0)" class="btn btn-primary mr-4 ml-10" id="submittestvideobtn">إرسال</a>
+                <a href="javascript:;void(0)" class="btn btn-accent" onclick="cancel()">يلغي</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block script %}
+    {% load static %}
+    <script src="{% static 'teacher/assets/vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'teacher/assets/js/select2.js' %}"></script>
+
+    <!-- Sweet Alert -->
+    <script src="{% static 'teacher/assets/vendor/sweetalert.min.js' %}"></script>
+    <script src="{% static 'teacher/assets/js/sweetalert.js' %}"></script>
+
+    <!-- Quill -->
+    <script src="{% static 'teacher/assets/vendor/quill.min.js' %}"></script>
+    <script src="{% static 'teacher/assets/js/quill.js' %}"></script>
+
+
+    <script>
+
+        let video = '';
+        const addVideo = (ele) => {
+            video = ele.files[0];
+            nameArr = video.name.split(".");
+            ext = nameArr[nameArr.length - 1];
+
+            if (ext != 'mp4' && ext != 'mov') {
+                showAlert(0, "You must choose video file!!!")
+                return;
+            }
+            console.log("called")
+
+            let videoname_length = video.name.length;
+            let videoname = video.name.substr(0, videoname_length - 4)
+
+            let html1 = `
+            <li class="accordion__menu-link" xmlns="http://www.w3.org/1999/html">
+                <span class="material-icons icon-16pt icon--left text-body">play_circle_outline</span>
+                <a class="flex">` + videoname + `</a>
+
+                <span style="margin-left:10px; cursor: pointer;" class="material-icons sidebar-menu-icon sidebar-menu-icon--left" onclick="deleteVideo(this)">delete</span>
+            </li>
+            `;
+            $('#group_section1').append(html1)
+            $("#customFile").parent().attr('style', 'display: none !important')
+        }
+
+        function deleteVideo(obj) {
+            $('#group_section1').html("");
+            $("#customFile").val("");
+            $("#customFile").parent().attr('style', 'display: bkock !important')
+            video = ''
+        }
+
+        $('#submittestvideobtn').on('click', () => {      
+            $("#loadings").css("display","block")                  
+            setTimeout(function(){
+                submit()
+            },500)
+        });
+
+        const submit = () =>{
+            if (video == '') {
+                swal({
+                    title: "You must upload one video",
+                    icon: "warning",
+                    closeOnConfirm: false,
+                });
+                location.reload();
+            }
+            
+            let url = '/teacher/save_testvideo/'
+            let form_data = new FormData()
+            form_data.append('video', video)
+            form_data.append('user', '{{ request.user.id }}')
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                async: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+            })
+            .then(response => {
+                let message = response.msg;
+                let id = response.id;
+                $("#loadings").css("display","none")
+                swal({
+                    title: "You have successfully sent the test video!",
+                    closeOnConfirm: false,
+                });
+                console.log("Stored section group successfully", message);
+                if (message == "success") {
+                    socket.emit('add_test_video', {
+                        'id': id,
+                        'user_id': '{{ request.user.id }}'
+                    })
+                    setTimeout(function(){
+                        {% get_current_language as lang %}
+                        document.location.href = '/{{lang}}/teacher/dashboard/'
+                    },500)
+                } else {
+                    document.location.reload();
+                }
+            })
+        }
+        
+        {% get_current_language as lang %}
+        const cancel = () =>{
+            document.location.href = '/{{lang}}/teacher/dashboard/'
+        }
+
+
+    </script>
+{% endblock %}

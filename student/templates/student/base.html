@@ -1,0 +1,788 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+{% if lang == "ar/" %}
+    <html lang="ar" dir="rtl">
+{% else %}
+    <html lang="en" dir="ltr">
+{% endif %}
+
+<style>
+    .backgg{
+        background-color: #e8f4ff !important;
+    }
+    .backgg-dark{
+        background-color: #4c525e !important;
+    }
+</style>
+
+<style>
+    #loadings {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.9;
+        background-color: #000;
+        z-index: 99;
+        text-align: center;
+    }
+
+    #loading-image {
+        position: absolute;
+        top: 27%;
+        left: 40%;
+        z-index: 100;
+    }
+
+    .loading::after {
+        display: block;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%);
+        background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(255, 255, 255, 0.2)), to(transparent));
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        /* Adding animation */
+        animation: loading 1s infinite;
+    }
+
+    /* Loading Animation */
+
+    @keyframes loading {
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+
+    .dancin-bc {
+        background: white !important;
+        height: 100%;
+        width: 100%;
+
+    }
+
+    .dancing-lao {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .dancing-lao:after {
+        display: block;
+        width: 150px;
+        height: 2px;
+        margin-top: 10px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+        background: rgb(43, 148, 209);
+        content: "";
+        -webkit-animation: 1s border infinite;
+        animation: 1s border infinite;
+        -webkit-animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+        animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+    }
+
+    .dancing-lao .left-dots {
+        position: absolute;
+        bottom: 20%;
+        left: 20%;
+    }
+
+    .dancing-lao .right-dots {
+        position: absolute;
+        bottom: 20%;
+        right: 20%;
+        -webkit-transform: scale(-1, 1);
+        transform: scale(-1, 1);
+    }
+
+    .dancing-lao .dot {
+        display: inline-block;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgb(43, 148, 209);
+        opacity: 0;
+    }
+
+    .dancing-lao .dot-1 {
+        -webkit-animation: 1s dot infinite;
+        animation: 1s dot infinite;
+        -webkit-animation-delay: .5s;
+        animation-delay: .5s;
+    }
+
+    .dancing-lao .dot-2 {
+        -webkit-animation: 1s dot-2 infinite;
+        animation: 1s dot-2 infinite;
+        -webkit-animation-delay: .5s;
+        animation-delay: .5s;
+    }
+
+    .dancing-lao .circle-dot {
+        display: inline-block;
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 2px solid rgb(43, 148, 209);
+        -webkit-animation: 1s cirle-dot infinite;
+        animation: 1s cirle-dot infinite;
+        -webkit-animation-delay: .5s;
+        animation-delay: .5s;
+        opacity: 0;
+    }
+
+    .dancing-lao img {
+        display: block;
+        margin: auto;
+        width: 90px;
+        height: 80px;
+        margin-bottom: 20px;
+        -webkit-animation: 1s dance infinite;
+        animation: 1s dance infinite;
+        -webkit-animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+        animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;
+    }
+
+    @-webkit-keyframes dance {
+        0% {
+            -webkit-transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+            transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+        }
+        50% {
+            -webkit-transform: translate3d(0, 8px, 0) scaleY(0.85);
+            transform: translate3d(0, 8px, 0) scaleY(0.85);
+        }
+        100% {
+            -webkit-transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+            transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+        }
+    }
+
+    @keyframes dance {
+        0% {
+            -webkit-transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+            transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+        }
+        50% {
+            -webkit-transform: translate3d(0, 8px, 0) scaleY(0.85);
+            transform: translate3d(0, 8px, 0) scaleY(0.85);
+        }
+        100% {
+            -webkit-transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+            transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+        }
+    }
+
+    @-webkit-keyframes border {
+        0% {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+            opacity: 0.5;
+        }
+        50% {
+            -webkit-transform: scaleX(0.6);
+            transform: scaleX(0.6);
+            opacity: 1;
+        }
+        100% {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+            opacity: 0.5;
+        }
+    }
+
+    @keyframes border {
+        0% {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+            opacity: 0.5;
+        }
+        50% {
+            -webkit-transform: scaleX(0.6);
+            transform: scaleX(0.6);
+            opacity: 1;
+        }
+        100% {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+            opacity: 0.5;
+        }
+    }
+
+    @-webkit-keyframes dot {
+        0% {
+            opacity: 0;
+        }
+        1% {
+            -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+        }
+        50% {
+            -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+            transform: scale(1) translate3d(-50px, -70px, 0);
+            opacity: .8;
+        }
+        100% {
+            -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+            transform: scale(1) translate3d(-50px, -70px, 0);
+            opacity: 0;
+        }
+    }
+
+    @keyframes dot {
+        0% {
+            opacity: 0;
+        }
+        1% {
+            -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+        }
+        50% {
+            -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+            transform: scale(1) translate3d(-50px, -70px, 0);
+            opacity: .8;
+        }
+        100% {
+            -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+            transform: scale(1) translate3d(-50px, -70px, 0);
+            opacity: 0;
+        }
+    }
+
+    @-webkit-keyframes dot-2 {
+        0% {
+            opacity: 0;
+        }
+        1% {
+            -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+        }
+        70% {
+            -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+            transform: scale(0.7) translate3d(-50px, -50px, 0);
+            opacity: .8;
+        }
+        100% {
+            -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+            transform: scale(0.7) translate3d(-50px, -50px, 0);
+            opacity: 0;
+        }
+    }
+
+    @keyframes dot-2 {
+        0% {
+            opacity: 0;
+        }
+        1% {
+            -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+        }
+        70% {
+            -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+            transform: scale(0.7) translate3d(-50px, -50px, 0);
+            opacity: .8;
+        }
+        100% {
+            -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+            transform: scale(0.7) translate3d(-50px, -50px, 0);
+            opacity: 0;
+        }
+    }
+
+    @-webkit-keyframes cirle-dot {
+        0% {
+            opacity: 0;
+        }
+        1% {
+            -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+        }
+        80% {
+            -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+            transform: scale(1) translate3d(-80px, -40px, 0);
+            opacity: .8;
+        }
+        100% {
+            -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+            transform: scale(1) translate3d(-80px, -40px, 0);
+            opacity: 0;
+        }
+    }
+
+    @keyframes cirle-dot {
+        0% {
+            opacity: 0;
+        }
+        1% {
+            -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+        }
+        80% {
+            -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+            transform: scale(1) translate3d(-80px, -40px, 0);
+            opacity: .8;
+        }
+        100% {
+            -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+            transform: scale(1) translate3d(-80px, -40px, 0);
+            opacity: 0;
+        }
+    }
+
+    .nav-drop-header-dark{
+        background-color: rgb(206, 215, 219) !important;
+    }
+    #loading-image {
+        position: absolute;
+        top: 27%;
+        left: 40%;
+        z-index: 100;
+    }
+
+    .pagination li {
+        width: 45px;
+        height: 45px;
+        border-radius: 50% !important;
+        border: 1px solid #E7E7E7;
+        padding-top: 5px;
+        font-size: 22px;
+        border-radius: 0%;
+        margin-left: 5px;
+        background: #fff;
+    }
+
+    .pagination li a {
+        margin-top: 50px
+    }
+
+    .accordion__item {
+        background-color: rgba(79, 34, 34, 0) !important;
+        font-size: 13px;
+    }
+
+    .sweet-alert .sa-icon.sa-success:after {
+        opacity: 0.0;
+    }
+
+    .sweet-alert .sa-icon.sa-success:before {
+        opacity: 0.0;
+    }
+
+    .sweet-alert .sa-icon.sa-success .sa-fix {
+        opacity: 0.0;
+    }
+
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Student -
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <!-- Perfect Scrollbar -->
+    <link type="text/css" href="/static/{{ lang }}student/assets/vendor/perfect-scrollbar.css" rel="stylesheet">
+    <!-- Fix Footer CSS -->
+    <link type="text/css" href="/static/{{ lang }}student/assets/vendor/fix-footer.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link type="text/css" href="/static/{{ lang }}student/assets/css/material-icons.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link type="text/css" href="/static/{{ lang }}student/assets/css/fontawesome.css" rel="stylesheet">
+    <!-- Preloader -->
+    <link type="text/css" href="/static/{{ lang }}student/assets/css/preloader.css" rel="stylesheet">
+    <!-- App CSS -->
+    <link type="text/css" href="/static/{{ lang }}student/assets/css/app.css" rel="stylesheet">
+    <!-- Toastr -->
+    <link type="text/css" href="/static/{{ lang }}student/assets/vendor/toastr.min.css" rel="stylesheet">
+    <link type="text/css" href="/static/{{ lang }}student/assets/css/toastr.css" rel="stylesheet">
+    <link type="text/css" href="/static/{{ lang }}student/assets/css/sweetalert.css" rel="stylesheet">
+    <script type="text/javascript">
+        function sorthistory() {
+            var sort_value = $("#historysort").val();
+            if (sort_value == 1) {
+                $('.purchaselist .purchaseentity').sort(function (a, b) {
+                    return $(b).data('sort') - $(a).data('sort');
+                }).appendTo('.purchaselist');
+            }
+            if (sort_value == 2) {
+                $('.purchaselist .purchaseentity').sort(function (a, b) {
+                    return $(a).data('sort') - $(b).data('sort');
+                }).appendTo('.purchaselist');
+            }
+            if (sort_value == 3) {
+                $('.purchaselist .purchaseentity').sort(function (a, b) {
+                    return $(b).data('sort') - $(a).data('sort');
+                }).appendTo('.purchaselist');
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .pagination li {
+            width: 45px;
+            height: 45px;
+            border: 1px solid black;
+            font-size: 30px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+        .nocourseavailable {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bolder;
+        }
+
+        /* .animated-toggle .toggler{
+                 position: relative;
+             display: block;
+             height: 31px;
+             width: 53px;
+             border: 2px solid #c29f01;
+             border-radius: 100px;
+             -webkit-transition: all .3s;
+             transition: all .3s;
+             cursor: pointer;
+         }*/
+
+        .sweet-alert .sa-icon.sa-success:after {
+            opacity: 0.0;
+        }
+
+        .sweet-alert .sa-icon.sa-success:before {
+            opacity: 0.0;
+        }
+
+        .sweet-alert .sa-icon.sa-success .sa-fix {
+            opacity: 0.0;
+        }
+    </style>
+</head>
+
+<style>
+    .backgg{
+        background-color: #e8f4ff !important;
+    }
+    .backgg-dark{
+        background-color: #4c525e !important;
+    }
+
+.screen-dark{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgb(17, 25, 36) !important;
+  z-index: 9999;
+  opacity: 1;
+}
+
+</style>
+
+<!-- <body class="layout-mini layout-mini" style="background: #f5f5f5 !important;height:100vh !important"> -->
+<body class="layout-mini backgg backgg-dark"  style="height: 100%;">
+<input type="hidden" id="hd_csrf" value="{{ csrf_token }}">
+
+<!-- Header Navbar -->
+
+
+<div class="screen hidden screen-dark ">
+    <div id="loadings" style="">
+        <div class="dancin-bc dancin-bc-dark" style="">
+            <div class="dancing-lao">
+                <div class="left-dots">
+                    <div class="dot dot-1"></div>
+                    <div class="dot dot-2"></div>
+                    <div class="circle-dot"></div>
+                </div>
+                <div class="right-dots">
+                    <div class="dot dot-1"></div>
+                    <div class="dot dot-2"></div>
+                    <div class="circle-dot"></div>
+                </div>
+                <img src="{% static 'assets/img/favicon.png' %}" class="cls-1" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" class="btn btn-primary" style="display: none;" data-toggle="toastr"
+        data-toastr-type="primary" id="test1" data-toastr-title="Heads up!"
+        data-toastr-message="This alert needs your attention, but it is not super important.">
+    Primary
+</button>
+
+<div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px" style="background-color: none !important ;">
+    <div class="mdk-drawer-layout__content page-content" style="background-color: none !important;">
+
+        {% block headercontent %}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+    {% include "./layout/left-sidebar.html" %}
+</div>
+
+<script src="/static/{{ lang }}student/assets/vendor/jquery.min.js"></script>
+<script src="/static/{{ lang }}student/assets/vendor/sweetalert.min.js"></script>
+<script src="/static/{{ lang }}student/assets/js/sweetalert.js"></script>
+<script src="/static/{{ lang }}student/assets/vendor/toastr.min.js"></script>
+<script src="/static/{{ lang }}student/assets/js/toastr.js"></script>
+<!-- Bootstrap -->
+<script src="/static/{{ lang }}student/assets/vendor/popper.min.js"></script>
+<script src="/static/{{ lang }}student/assets/vendor/bootstrap.min.js"></script>
+<!-- Perfect Scrollbar -->
+<script src="/static/{{ lang }}student/assets/vendor/perfect-scrollbar.min.js"></script>
+<!-- DOM Factory -->
+<script src="/static/{{ lang }}student/assets/vendor/dom-factory.js"></script>
+<!-- MDK -->
+<script src="/static/{{ lang }}student/assets/vendor/material-design-kit.js"></script>
+<!-- App JS -->
+<script src="/static/{{ lang }}student/assets/js/app.js"></script>
+<!-- Sidebar Mini JS -->
+<script src="/static/{{ lang }}student/assets/js/sidebar-mini.js"></script>
+<!-- <script src="https://booctep.com/socket.io/socket.io.js"></script> -->
+<script src="{% static 'socket/socket.io.js' %}"></script>
+<script>
+
+    var socket = io.connect("https://booctep.com")
+    // var socket = io.connect("http://localhost:3000")
+    console.log("socket in base html:",socket);
+    
+    var user_id = '{{ request.user.id }}';
+    var user_role = '{{ request.user.group_id }}';
+    socket.on('send_noti_to_student_all_reply', (data) => {
+        if (user_role * 1 == 2) {
+            $("#test1").attr("data-toastr-title", data.title)
+            $("#test1").attr("data-toastr-message", data.content)
+            $("#test1").click()
+            $(".toast-title").html(data.title)
+            $(".toast-message").html(data.content)
+        }
+    })
+    socket.on('send_noti_to_student_reply', (data) => {
+        console.log("send_noti_to_student_reply", data)
+        if (user_id * 1 == data.receiver_id * 1) {
+            console.log("is there?")
+            $("#test1").attr("data-toastr-title", data.title)
+            $("#test1").attr("data-toastr-message", data.content)
+            $("#test1").click()
+            $(".toast-title").html(data.title)
+            $(".toast-message").html(data.content)
+        }
+    })
+</script>
+
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRFToken': $("#hd_csrf").val(),
+        }
+    });
+    (function () {
+        'use strict';
+        $("html").css({
+            'overflow': 'auto'
+        })
+        // ENABLE sidebar menu tabs
+        $('.js-sidebar-mini-tabs [data-toggle="tab"]').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+
+        $('.js-sidebar-mini-tabs').on('show.bs.tab', function (e) {
+            $('.js-sidebar-mini-tabs > .active').removeClass('active')
+            $(e.target).parent().addClass('active')
+        })
+    })()
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        var color = localStorage.getItem('mode');
+        if (color == "light") {
+            $(".getmodename").append("dark");
+        } else {
+            $(".getmodename").append("light");
+        }
+        console.log(color);
+        color_mode();
+        console.log("{{lang}}");
+    });
+
+    head = document.getElementsByTagName('HEAD')[0];
+
+    // Create new link Element
+    link = document.createElement('link');
+
+    // set the attributes for link element
+    link.rel = 'stylesheet';
+
+    link.type = 'text/css';
+
+    link.href = "/static/{{lang}}student/assets/css/dark.css";
+
+    $('.toggler').on('click', function () {
+        if (localStorage.getItem('mode') == 'light') {
+            localStorage.setItem('mode', 'dark');
+            $(".getmodename").empty();
+            $(".getmodename").append("light");
+
+        } else {
+            localStorage.setItem('mode', 'light');
+            $(".getmodename").empty();
+            $(".getmodename").append("dark");
+
+        }
+        color_mode();
+    });
+
+    function color_mode() {
+        if (localStorage.getItem('mode') == 'dark') {
+            head.appendChild(link);
+
+        } else {
+            head.removeChild(link);
+        }
+    }
+
+    function color_mode() {
+        if (localStorage.getItem('mode') == 'dark') {
+            $("body").addClass('body-dark');
+            $(".active").addClass('active-dark'); 
+            $(".nextt").addClass('nextt-dark'); 
+            $(".material-icons").addClass('material-icons-dark'); 
+            $(".btncheck").addClass('btncheck-dark'); 
+            $(".activve").addClass('activve-dark'); 
+            $(".icn").addClass('icn-dark'); 
+            $(".btn-light").addClass('btn-light-dark'); 
+            $(".navbar").addClass('navbar-dark'); 
+            $(".sidebar").addClass('sidebar-dark'); 
+            $(".backgg").addClass('backgg-dark'); 
+            $(".sidebar-secondary").addClass('sidebar-secondary-dark'); 
+            $(".btn-primary").addClass('btn-primary-dark');
+            $(".top").addClass('top-dark');
+            $(".top").addClass('top-dark');
+            $(".dancin-bc").addClass('dancin-bc-dark');
+            $(".screen").addClass('screen-dark');
+            $(".message").addClass('message-dark');
+            $(".card").addClass('card-dark');
+            $(".active-a").addClass('active-a-dark'); 
+            $(".menu-icon").addClass('menu-icon-dark'); 
+            $(".nav-drop-header").addClass('nav-drop-header-dark');  
+            $(".disabled").addClass('disabled-dark'); 
+            $(".alert-soft-primary ").addClass('alert-soft-primary-dark'); 
+            $(".cnti").addClass('cnti-dark'); 
+            $(".sidebar-light-dodger-blue").addClass('sidebar-light-dodger-blue-dark'); 
+            $(".blllu").addClass('blllu-dark'); 
+            $(".progress").addClass('progress-dark'); 
+            $(".whitee").addClass('whitee-dark'); 
+            $(".brd").addClass('brd-dark');
+            $(".card-footer").addClass('card-footer-dark');
+            $(".custom-file").addClass('custom-file-dark');
+            $(".lineeeet").addClass('lineeeet-dark');
+            $(".app-messages__container").addClass('app-messages__container-dark'); 
+            $(".hrrrr").addClass('hrrrr-dark');
+            $(".sweet-alert").addClass('sweet-alert-dark'); 
+            $(".is-light").addClass('is-light-dark'); 
+            $(".form-control").addClass('form-control-dark'); 
+            $(".accorddd").addClass('accorddd-dark'); 
+            $(".dropdown-menu-right").addClass('dropdown-menu-right-dark'); 
+            $(".track").addClass('track-dark'); 
+            $(".tehead").addClass('tehead-dark'); 
+            $(".bgk").addClass('bgk-dark'); 
+            $(".socig").addClass('socig-dark'); 
+            $(".soci").addClass('soci-dark'); 
+            $(".card-support").addClass('card-support-dark'); 
+            $(".cennnter").addClass('cennnter-dark'); 
+            $(".mediabout").addClass('mediabout-dark'); 
+            // head.removeChild(link);
+        } else {
+            $("body").removeClass('body-dark');
+            $(".active").removeClass('active-dark'); 
+            $(".form-control").removeClass('form-control-dark'); 
+            $(".sweet-alert").removeClass('sweet-alert-dark'); 
+            $(".nextt").removeClass('nextt-dark'); 
+            $(".bgk").removeClass('bgk-dark'); 
+            $(".whitee").removeClass('whitee-dark'); 
+            $(".tehead").removeClass('tehead-dark'); 
+            $(".btncheck").removeClass('btncheck-dark'); 
+            $(".custom-file").removeClass('custom-file-dark');
+            $(".activve").removeClass('activve-dark'); 
+            $(".app-messages__container").removeClass('app-messages__container-dark'); 
+            $(".material-icons").removeClass('material-icons-dark'); 
+            $(".icn").removeClass('icn-dark'); 
+            $(".dancin-bc").removeClass('dancin-bc-dark');
+            $(".screen").removeClass('screen-dark');
+            $(".sidebar").removeClass('sidebar-dark'); 
+            $(".alert-soft-primary ").removeClass('alert-soft-primary-dark'); 
+            $(".navbar").removeClass('navbar-dark');  
+            $(".btn-light").removeClass('btn-light-dark'); 
+            $(".btn-primary").removeClass('btn-primary-dark');
+            $(".sidebar-secondary").removeClass('sidebar-secondary-dark'); 
+            $(".top").removeClass('top-dark');
+            $(".card-footer").removeClass('card-footer-dark');
+            $(".backgg").removeClass('backgg-dark'); 
+            $(".message").removeClass('message-dark');
+            $(".dropdown-menu-right").removeClass('dropdown-menu-right-dark'); 
+            $(".menu-icon").removeClass('menu-icon-dark'); 
+            $(".nav-drop-header").removeClass('nav-drop-header-dark');  
+            $(".disabled").removeClass('disabled-dark'); 
+            $(".sidebar-light-dodger-blue").removeClass('sidebar-light-dodger-blue-dark'); 
+            $(".cnti").removeClass('cnti-dark'); 
+            $(".card").removeClass('card-dark');
+            $(".progress").removeClass('progress-dark'); 
+            $(".blllu").removeClass('blllu-dark'); 
+            $(".active-a").removeClass('active-a-dark'); 
+            $(".card-header").removeClass('card-header-dark');
+            $(".brd").removeClass('brd-dark');
+            $(".lineeeet").removeClass('lineeeet-dark');
+            $(".hrrrr").removeClass('hrrrr-dark');
+            $(".is-light").removeClass('is-light-dark'); 
+            $(".accorddd").removeClass('accorddd-dark'); 
+            $(".track").removeClass('track-dark'); 
+            $(".socig").removeClass('socig-dark'); 
+            $(".soci").removeClass('soci-dark'); 
+            $(".card-support").removeClass('card-support-dark'); 
+            $(".cennnter").removeClass('cennnter-dark'); 
+            $(".mediabout").removeClass('mediabout-dark'); 
+            // head.removeChild(link);
+        }
+    }
+</script>
+
+{% block script %}
+{% endblock %}
+
+
+</body>
+
+</html>
